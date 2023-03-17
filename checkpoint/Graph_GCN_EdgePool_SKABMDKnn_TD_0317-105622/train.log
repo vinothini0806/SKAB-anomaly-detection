@@ -167,3 +167,31 @@
 03-17 12:20:23 save best model epoch 31, acc 0.9770
 03-17 12:20:23 -----Epoch 32/49-----
 03-17 12:20:23 current lr: [0.001]
+03-17 12:22:20 Epoch: 32 train-Loss: 0.0728 train-F1Score: 0.9757 train-missing_rate:0.0108 train-false_rate:0.0152 Cost 116.6998 sec
+03-17 12:22:39 Epoch: 32 val-Loss: 0.0422 val-F1Score: 0.9773 val-missing_rate:0.0187 val-false_rate:0.0262 Cost 19.5340 sec
+03-17 12:22:39 save best model epoch 32, acc 0.9773
+03-17 12:22:39 -----Epoch 33/49-----
+03-17 12:22:39 current lr: [0.001]
+03-17 12:24:25 Epoch: 33 train-Loss: 0.0746 train-F1Score: 0.9744 train-missing_rate:0.0119 train-false_rate:0.0154 Cost 106.2489 sec
+03-17 12:24:43 Epoch: 33 val-Loss: 0.0396 val-F1Score: 0.9773 val-missing_rate:0.0192 val-false_rate:0.0268 Cost 17.3637 sec
+03-17 12:24:43 save best model epoch 33, acc 0.9773
+03-17 12:24:43 -----Epoch 34/49-----
+03-17 12:24:43 current lr: [0.001]
+03-17 12:26:41 Epoch: 34 train-Loss: 0.0675 train-F1Score: 0.9758 train-missing_rate:0.0104 train-false_rate:0.0155 Cost 118.3766 sec
+03-17 12:26:58 Epoch: 34 val-Loss: 0.0406 val-F1Score: 0.9785 val-missing_rate:0.0172 val-false_rate:0.0264 Cost 16.5403 sec
+03-17 12:26:58 save best model epoch 34, acc 0.9785
+03-17 12:26:58 -----Epoch 35/49-----
+03-17 12:26:58 current lr: [0.001]
+03-17 12:28:52 Epoch: 35 train-Loss: 0.0681 train-F1Score: 0.9770 train-missing_rate:0.0098 train-false_rate:0.0147 Cost 113.6694 sec
+03-17 12:29:09 Epoch: 35 val-Loss: 0.0425 val-F1Score: 0.9791 val-missing_rate:0.0164 val-false_rate:0.0254 Cost 17.0074 sec
+03-17 12:29:09 save best model epoch 35, acc 0.9791
+03-17 12:29:09 -----Epoch 36/49-----
+03-17 12:29:09 current lr: [0.001]
+03-17 12:31:03 Epoch: 36 train-Loss: 0.0689 train-F1Score: 0.9754 train-missing_rate:0.0106 train-false_rate:0.0157 Cost 114.0318 sec
+03-17 12:31:19 Epoch: 36 val-Loss: 0.0421 val-F1Score: 0.9778 val-missing_rate:0.0179 val-false_rate:0.0268 Cost 16.2653 sec
+03-17 12:31:19 -----Epoch 37/49-----
+03-17 12:31:19 current lr: [0.001]
+03-17 12:33:07 Epoch: 37 train-Loss: 0.0701 train-F1Score: 0.9769 train-missing_rate:0.0092 train-false_rate:0.0155 Cost 107.9883 sec
+03-17 12:33:24 Epoch: 37 val-Loss: 0.0379 val-F1Score: 0.9791 val-missing_rate:0.0152 val-false_rate:0.0269 Cost 17.0375 sec
+03-17 12:33:24 -----Epoch 38/49-----
+03-17 12:33:24 current lr: [0.001]
