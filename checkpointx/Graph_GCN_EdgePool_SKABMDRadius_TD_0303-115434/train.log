@@ -1,0 +1,32 @@
+03-03 11:54:34 model_name: GCN
+03-03 11:54:34 sample_length: 9
+03-03 11:54:34 data_name: SKABMDRadius
+03-03 11:54:34 Input_type: TD
+03-03 11:54:34 data_dir: ./data/SKABMD
+03-03 11:54:34 cuda_device: 0
+03-03 11:54:34 checkpoint_dir: ./checkpointx
+03-03 11:54:34 batch_size: 64
+03-03 11:54:34 num_workers: 0
+03-03 11:54:34 task: Graph
+03-03 11:54:34 pooltype: EdgePool
+03-03 11:54:34 layer_num_last: 0
+03-03 11:54:34 opt: sgd
+03-03 11:54:34 lr: 0.01
+03-03 11:54:34 momentum: 0.9
+03-03 11:54:34 weight_decay: 0.0005
+03-03 11:54:34 lr_scheduler: step
+03-03 11:54:34 gamma: 0.1
+03-03 11:54:34 steps: 9
+03-03 11:54:34 resume: 
+03-03 11:54:34 max_model_num: 1
+03-03 11:54:34 max_epoch: 100
+03-03 11:54:34 print_step: 100
+03-03 11:54:34 using 1 cpu
+03-03 11:54:43 -----Epoch 0/99-----
+03-03 11:54:43 current lr: [0.01]
+03-03 11:54:43 Epoch: 0, Train Loss: 0.7068 Train Acc: 0.5156,286.9 examples/sec 0.22 sec/batch
+03-03 11:54:53 Epoch: 0 train-Loss: 0.4434 train-F1Score: 0.8119 train-missing_rate:0.0913 train-false_rate:0.1156 Cost 10.0128 sec
+03-03 11:54:54 Epoch: 0 val-Loss: 4.5680 val-F1Score: 0.7285 val-missing_rate:0.2468 val-false_rate:0.1849 Cost 1.5415 sec
+03-03 11:54:54 save best model epoch 0, acc 0.7285
+03-03 11:54:54 -----Epoch 1/99-----
+03-03 11:54:54 current lr: [0.01]

@@ -23,17 +23,19 @@ class GCN(torch.nn.Module):
 
     def forward(self, data, pooltype):
         x, edge_index, batch= data.x, data.edge_index, data.batch
-
+        # print('batch',len(batch))
         x = self.GConv1(x, edge_index)
         x = self.bn1(x)
         x = F.relu(x)
         x, edge_index, batch = self.poolresult(self.pool1,pooltype,x, edge_index, batch)
+        # print('batch',len(batch))
         x1 = global_mean_pool(x, batch)
 
         x = self.GConv2(x, edge_index)
         x = self.bn2(x)
         x = F.relu(x)
         x, edge_index, batch = self.poolresult(self.pool2, pooltype, x, edge_index, batch)
+        # print('batch',len(batch))
         x2 = global_mean_pool(x, batch)
 
         x = x1 + x2

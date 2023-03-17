@@ -7,7 +7,7 @@ from datasets.AuxFunction import FFT
 import pickle
 # ------------------------------------------------------------
 signal_size = 1024
-root = "D:\data\XJTU_Gearbox"
+root = "C:\\Users\\situser\\Desktop\\Vinothini\\SUTD\\PHMGNNBenchmark\\data\\XJTU_Gearbox"
 
 fault_name = ['1ndBearing_ball','1ndBearing_inner','1ndBearing_mix(inner+outer+ball)','1ndBearing_outer',
               '2ndPlanetary_brokentooth','2ndPlanetary_missingtooth','2ndPlanetary_normalstate','2ndPlanetary_rootcracks','2ndPlanetary_toothwear']
@@ -25,10 +25,11 @@ def get_files(sample_length, root, InputType, task,test=False):
     dataname:List of failure data
     '''
     data = []
-
+    # This for loop is to get all 9 channel1 fault data as data
     for i in tqdm(range(len(fault_name))):
         data_name = 'Data_Chan1.txt'
-        path2 = os.path.join('/tmp', root, fault_name[i],data_name)
+        path2 = os.path.normpath(os.path.join('C:\\Users\\situser\\Desktop\\Vinothini\\SUTD\\PHMGNNBenchmark\\data\\XJTU_Gearbox',fault_name[i],data_name))
+        # print("path2 ",root )
         data1 = data_load(sample_length,filename=path2, label=label[i],InputType=InputType,task=task)
         data += data1
 
@@ -84,7 +85,8 @@ class XJTUGearboxRadius(object):
                 list_data = pickle.load(fo, encoding='bytes')
         else:
             list_data = get_files(self.sample_length, self.data_dir, self.InputType, self.task, test)
-            with open(os.path.join(self.data_dir, "XJTUGearboxRadius.pkl"), 'wb') as fo:
+            with open(os.path.normpath(os.path.join('C:\\Users\\situser\\Desktop\\Vinothini\\SUTD\\PHMGNNBenchmark\\data\\XJTU_Gearbox', "XJTUGearboxRadius.pkl")), 'wb') as fo:
+                print("datadir",self.data_dir)
                 pickle.dump(list_data, fo)
 
         if test:

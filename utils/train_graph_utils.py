@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-
+from sklearn.metrics import f1_score
 import logging
 import os
 import time
@@ -14,6 +14,7 @@ import models2
 import datasets
 from utils.save import Save_Tool
 from utils.freeze import set_freeze_by_id
+import pandas as pd
 
 
 class train_utils(object):
@@ -43,11 +44,16 @@ class train_utils(object):
 
 
         # Load the datasets
+        # data name is graph type function for specific dataset which we are going to apply for raw data by using KNN or Radius or Path
         Dataset = getattr(datasets, args.data_name)
         self.datasets = {}
+        # sample length -> node feature length
+        # data_dir -> the directory of the data as pickle file after apply the KNN or Path or Radius
+        # Input_type -> the input type decides the length of input
+        # task -> Node classification or Graph classification
+        self.datasets['train'], self.datasets['val'] = Dataset(args.sample_length,args.data_dir, args.Input_type, args.task, args.overlapping_number).data_preprare()
 
-        self.datasets['train'], self.datasets['val'] = Dataset(args.sample_length,args.data_dir, args.Input_type, args.task).data_preprare()
-
+        # num_workers = number of training process
         self.dataloaders = {x: DataLoader(self.datasets[x], batch_size=args.batch_size,
                                                            shuffle=(True if x == 'train' else False),
                                                            num_workers=args.num_workers,
@@ -72,6 +78,7 @@ class train_utils(object):
             print('The task is wrong!')
 
         if args.layer_num_last != 0:
+            # unfrozen the mentioned last layers in the model architecture
             set_freeze_by_id(self.model, args.layer_num_last)
         if self.device_count > 1:
             self.model = torch.nn.DataParallel(self.model)
@@ -132,12 +139,19 @@ class train_utils(object):
         batch_count = 0
         batch_loss = 0.0
         batch_acc = 0
+        x = 0
         step_start = time.time()
-
+        # args.max_model_num -> the number of most recent models to save
         save_list = Save_Tool(max_num=args.max_model_num)
-
+        # max_epoch -> number of epochs
         for epoch in range(self.start_epoch, args.max_epoch):
-
+            pred_list = []
+            label_list = []
+            
+            num_missing_targets = 0
+            num_false_targets = 0
+            missing_alarm_rate = 0.0
+            False_alarm_rate = 0.0
             logging.info('-'*5 + 'Epoch {}/{}'.format(epoch, args.max_epoch - 1) + '-'*5)
             # Update the learning rate
             if self.lr_scheduler is not None:
@@ -154,15 +168,28 @@ class train_utils(object):
 
                 # Set model to train mode or test mode
                 if phase == 'train':
+                    # sets the model to train mode,
+                    # the model will keep track of the gradients and update its parameters during the training process
                     self.model.train()
                 else:
+                    # sets the model to evaluation mode,
+                    #  which means that the model will not update its parameters and will not keep track of gradients.
                     self.model.eval()
                 sample_num = 0
+                # for loop for access traing and validation dta during each epoch
+                # print("self.dataloaders['train']",len(self.dataloaders['train']))
+                # print("self.dataloaders['val']",len(self.dataloaders['val']))
                 for data in self.dataloaders[phase]:
+                    # print("length of data")
+                    # print(len(data))
                     inputs = data.to(self.device)
                     labels = inputs.y
+                    
+                    x += len(inputs.batch)
+                    # print("inputs.batch",x)
                     if args.task == 'Node':
                         bacth_num = inputs.num_nodes
+                        # print("Number of nodes in batches= ",bacth_num)
                         sample_num += len(labels)
                     elif args.task == 'Graph':
                         bacth_num = inputs.num_graphs
@@ -181,7 +208,16 @@ class train_utils(object):
                             print("There is no such task!!")
 
                         loss = self.criterion(logits, labels)
+                        # pred -> predictions of node labels for univariate data 
+                        # pred -> predictions of graph labels for multivariate data 
                         pred = logits.argmax(dim=1)
+                        
+                        pred_list = pred_list + list(pred)
+                        # print("number of predictions",len(list(pred)))
+                        label_list = label_list + list(labels)
+                        
+                        # correct = f1_score(labels,pred)
+                        
                         correct = torch.eq(pred, labels).float().sum().item()
                         loss_temp = loss.item() * bacth_num
                         epoch_loss += loss_temp
@@ -199,23 +235,23 @@ class train_utils(object):
                             batch_count += bacth_num
 
                             # Print the training information
-                            if step % args.print_step == 0:
-                                batch_loss = batch_loss / batch_count
-                                batch_acc = batch_acc / batch_count
-                                temp_time = time.time()
-                                train_time = temp_time - step_start
-                                step_start = temp_time
-                                batch_time = train_time / args.print_step if step != 0 else train_time
-                                sample_per_sec = 1.0*batch_count/train_time
-                                logging.info('Epoch: {}, Train Loss: {:.4f} Train Acc: {:.4f},'
-                                             '{:.1f} examples/sec {:.2f} sec/batch'.format(
-                                    epoch, batch_loss, batch_acc, sample_per_sec, batch_time
-                                ))
+                            # if step % args.print_step == 0:
+                            #     batch_loss = batch_loss / batch_count
+                            #     batch_acc = batch_acc / batch_count
+                            #     temp_time = time.time()
+                            #     train_time = temp_time - step_start
+                            #     step_start = temp_time
+                            #     batch_time = train_time / args.print_step if step != 0 else train_time
+                            #     sample_per_sec = 1.0*batch_count/train_time
+                            #     logging.info('Epoch: {}, Train Loss: {:.4f} Train Acc: {:.4f},'
+                            #                  '{:.1f} examples/sec {:.2f} sec/batch'.format(
+                            #         epoch, batch_loss, batch_acc, sample_per_sec, batch_time
+                            #     ))
 
-                                batch_acc = 0
-                                batch_loss = 0.0
-                                batch_count = 0
-                            step += 1
+                            #     batch_acc = 0
+                            #     batch_loss = 0.0
+                            #     batch_count = 0
+                            # step += 1
 
                 if self.lr_scheduler is not None:
                     self.lr_scheduler.step()
@@ -223,11 +259,24 @@ class train_utils(object):
                 # Print the train and val information via each epoch
 
                 epoch_loss = epoch_loss / sample_num
-                epoch_acc = epoch_acc / sample_num
+                # epoch_acc = epoch_acc / sample_num
+                epoch_acc = f1_score(label_list,pred_list)
+                for i,label in enumerate(label_list):
+                    if label != pred_list[i]:
+                        if label==1:
+                            num_missing_targets += 1
+                        elif label==0:
+                            num_false_targets += 1
+                # print("batch count",len(label_list))
+                # print("num_missing_targets",num_missing_targets)
+                # print("num_false_targets",num_false_targets)
+                missing_alarm_rate = num_missing_targets/len(label_list)
+                False_alarm_rate = num_false_targets/len(label_list)
 
-
-                logging.info('Epoch: {} {}-Loss: {:.4f} {}-Acc: {:.4f}, Cost {:.4f} sec'.format(
-                    epoch, phase, epoch_loss, phase, epoch_acc, time.time()-epoch_start
+                # df_label_list = pd.DataFrame({"label":list(label_list),"pred":list(pred_list)})
+                # df_label_list.to_csv(f"results_{time.time()}.csv",index=False)
+                logging.info('Epoch: {} {}-Loss: {:.4f} {}-F1Score: {:.4f} {}-missing_rate:{:.4f} {}-false_rate:{:.4f} Cost {:.4f} sec'.format(
+                    epoch, phase, epoch_loss, phase, epoch_acc,phase ,missing_alarm_rate, phase,False_alarm_rate, time.time()-epoch_start
                 ))
 
                 # save the model
