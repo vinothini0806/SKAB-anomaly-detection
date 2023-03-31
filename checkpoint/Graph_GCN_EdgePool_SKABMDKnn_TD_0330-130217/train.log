@@ -1,0 +1,452 @@
+03-30 13:02:17 model_name: GCN
+03-30 13:02:17 sample_length: 9
+03-30 13:02:17 data_name: SKABMDKnn
+03-30 13:02:17 Input_type: TD
+03-30 13:02:17 data_dir: ./data/SKABMD
+03-30 13:02:17 cuda_device: 0
+03-30 13:02:17 checkpoint_dir: ./checkpoint
+03-30 13:02:17 batch_size: 64
+03-30 13:02:17 num_workers: 0
+03-30 13:02:17 overlapping_number: 0
+03-30 13:02:17 task: Graph
+03-30 13:02:17 pooltype: EdgePool
+03-30 13:02:17 metric: 0
+03-30 13:02:17 layer_num_last: 0
+03-30 13:02:17 opt: sgd
+03-30 13:02:17 lr: 0.01
+03-30 13:02:17 momentum: 0.9
+03-30 13:02:17 weight_decay: 0.0005
+03-30 13:02:17 lr_scheduler: step
+03-30 13:02:17 gamma: 0.1
+03-30 13:02:17 steps: 9
+03-30 13:02:17 resume: 
+03-30 13:02:17 max_model_num: 1
+03-30 13:02:17 max_epoch: 100
+03-30 13:02:17 print_step: 100
+03-30 13:02:17 using 1 cpu
+03-30 13:02:24 -----Epoch 0/99-----
+03-30 13:02:24 current lr: [0.01]
+03-30 13:02:33 Epoch: 0 train-Loss: 0.4341 train-F1Score: 0.8214 train-missing_rate:0.0825 train-false_rate:0.1347 Cost 8.5327 sec
+03-30 13:02:34 Epoch: 0 val-Loss: 1.3784 val-F1Score: 0.8031 val-missing_rate:0.1320 val-false_rate:0.2962 Cost 1.3566 sec
+03-30 13:02:34 save best model epoch 0, acc 0.8031
+03-30 13:02:34 -----Epoch 1/99-----
+03-30 13:02:34 current lr: [0.01]
+03-30 13:02:43 Epoch: 1 train-Loss: 0.3618 train-F1Score: 0.8552 train-missing_rate:0.0696 train-false_rate:0.1039 Cost 9.2364 sec
+03-30 13:02:45 Epoch: 1 val-Loss: 0.4367 val-F1Score: 0.8527 val-missing_rate:0.1121 val-false_rate:0.2091 Cost 1.3382 sec
+03-30 13:02:45 save best model epoch 1, acc 0.8527
+03-30 13:02:45 -----Epoch 2/99-----
+03-30 13:02:45 current lr: [0.01]
+03-30 13:02:55 Epoch: 2 train-Loss: 0.3576 train-F1Score: 0.8501 train-missing_rate:0.0606 train-false_rate:0.1233 Cost 9.9591 sec
+03-30 13:02:56 Epoch: 2 val-Loss: 0.4343 val-F1Score: 0.8415 val-missing_rate:0.1352 val-false_rate:0.1996 Cost 1.3570 sec
+03-30 13:02:56 -----Epoch 3/99-----
+03-30 13:02:56 current lr: [0.01]
+03-30 13:03:06 Epoch: 3 train-Loss: 0.3259 train-F1Score: 0.8610 train-missing_rate:0.0755 train-false_rate:0.0880 Cost 9.8904 sec
+03-30 13:03:07 Epoch: 3 val-Loss: 0.5760 val-F1Score: 0.8551 val-missing_rate:0.1209 val-false_rate:0.1877 Cost 1.3516 sec
+03-30 13:03:07 save best model epoch 3, acc 0.8551
+03-30 13:03:07 -----Epoch 4/99-----
+03-30 13:03:07 current lr: [0.01]
+03-30 13:03:17 Epoch: 4 train-Loss: 0.3295 train-F1Score: 0.8592 train-missing_rate:0.0726 train-false_rate:0.0944 Cost 9.6005 sec
+03-30 13:03:18 Epoch: 4 val-Loss: 0.3839 val-F1Score: 0.8584 val-missing_rate:0.1173 val-false_rate:0.1897 Cost 1.3566 sec
+03-30 13:03:18 save best model epoch 4, acc 0.8584
+03-30 13:03:18 -----Epoch 5/99-----
+03-30 13:03:18 current lr: [0.001]
+03-30 13:03:28 Epoch: 5 train-Loss: 0.2775 train-F1Score: 0.8917 train-missing_rate:0.0562 train-false_rate:0.0716 Cost 9.6260 sec
+03-30 13:03:29 Epoch: 5 val-Loss: 0.2621 val-F1Score: 0.8944 val-missing_rate:0.1030 val-false_rate:0.1237 Cost 1.3800 sec
+03-30 13:03:29 save best model epoch 5, acc 0.8944
+03-30 13:03:29 -----Epoch 6/99-----
+03-30 13:03:29 current lr: [0.001]
+03-30 13:03:39 Epoch: 6 train-Loss: 0.2420 train-F1Score: 0.9152 train-missing_rate:0.0427 train-false_rate:0.0572 Cost 9.5492 sec
+03-30 13:03:40 Epoch: 6 val-Loss: 0.2459 val-F1Score: 0.9130 val-missing_rate:0.0847 val-false_rate:0.0970 Cost 1.3450 sec
+03-30 13:03:40 save best model epoch 6, acc 0.9130
+03-30 13:03:40 -----Epoch 7/99-----
+03-30 13:03:40 current lr: [0.001]
+03-30 13:03:52 Epoch: 7 train-Loss: 0.2403 train-F1Score: 0.9146 train-missing_rate:0.0472 train-false_rate:0.0527 Cost 11.2646 sec
+03-30 13:03:53 Epoch: 7 val-Loss: 0.2309 val-F1Score: 0.9141 val-missing_rate:0.0895 val-false_rate:0.0907 Cost 1.6468 sec
+03-30 13:03:53 save best model epoch 7, acc 0.9141
+03-30 13:03:53 -----Epoch 8/99-----
+03-30 13:03:53 current lr: [0.001]
+03-30 13:04:04 Epoch: 8 train-Loss: 0.2132 train-F1Score: 0.9220 train-missing_rate:0.0477 train-false_rate:0.0427 Cost 10.7707 sec
+03-30 13:04:06 Epoch: 8 val-Loss: 0.2253 val-F1Score: 0.9211 val-missing_rate:0.0895 val-false_rate:0.0744 Cost 1.5471 sec
+03-30 13:04:06 save best model epoch 8, acc 0.9211
+03-30 13:04:06 -----Epoch 9/99-----
+03-30 13:04:06 current lr: [0.001]
+03-30 13:04:18 Epoch: 9 train-Loss: 0.2133 train-F1Score: 0.9231 train-missing_rate:0.0452 train-false_rate:0.0442 Cost 12.0882 sec
+03-30 13:04:19 Epoch: 9 val-Loss: 0.2258 val-F1Score: 0.9214 val-missing_rate:0.0875 val-false_rate:0.0751 Cost 1.4761 sec
+03-30 13:04:19 save best model epoch 9, acc 0.9214
+03-30 13:04:19 -----Epoch 10/99-----
+03-30 13:04:19 current lr: [0.001]
+03-30 13:04:30 Epoch: 10 train-Loss: 0.1982 train-F1Score: 0.9383 train-missing_rate:0.0378 train-false_rate:0.0338 Cost 10.2713 sec
+03-30 13:04:31 Epoch: 10 val-Loss: 0.2086 val-F1Score: 0.9362 val-missing_rate:0.0696 val-false_rate:0.0620 Cost 1.6272 sec
+03-30 13:04:31 save best model epoch 10, acc 0.9362
+03-30 13:04:31 -----Epoch 11/99-----
+03-30 13:04:31 current lr: [0.001]
+03-30 13:04:42 Epoch: 11 train-Loss: 0.2049 train-F1Score: 0.9328 train-missing_rate:0.0368 train-false_rate:0.0417 Cost 10.5444 sec
+03-30 13:04:43 Epoch: 11 val-Loss: 0.2005 val-F1Score: 0.9338 val-missing_rate:0.0672 val-false_rate:0.0732 Cost 1.6272 sec
+03-30 13:04:43 -----Epoch 12/99-----
+03-30 13:04:43 current lr: [0.001]
+03-30 13:04:53 Epoch: 12 train-Loss: 0.1905 train-F1Score: 0.9355 train-missing_rate:0.0378 train-false_rate:0.0373 Cost 10.0096 sec
+03-30 13:04:55 Epoch: 12 val-Loss: 0.2103 val-F1Score: 0.9332 val-missing_rate:0.0736 val-false_rate:0.0640 Cost 1.3491 sec
+03-30 13:04:55 -----Epoch 13/99-----
+03-30 13:04:55 current lr: [0.001]
+03-30 13:05:05 Epoch: 13 train-Loss: 0.1816 train-F1Score: 0.9427 train-missing_rate:0.0343 train-false_rate:0.0323 Cost 10.5904 sec
+03-30 13:05:07 Epoch: 13 val-Loss: 0.1787 val-F1Score: 0.9442 val-missing_rate:0.0604 val-false_rate:0.0581 Cost 1.6737 sec
+03-30 13:05:07 save best model epoch 13, acc 0.9442
+03-30 13:05:07 -----Epoch 14/99-----
+03-30 13:05:07 current lr: [0.001]
+03-30 13:05:17 Epoch: 14 train-Loss: 0.1722 train-F1Score: 0.9482 train-missing_rate:0.0268 train-false_rate:0.0338 Cost 9.9854 sec
+03-30 13:05:19 Epoch: 14 val-Loss: 0.1894 val-F1Score: 0.9461 val-missing_rate:0.0549 val-false_rate:0.0565 Cost 1.3370 sec
+03-30 13:05:19 save best model epoch 14, acc 0.9461
+03-30 13:05:19 -----Epoch 15/99-----
+03-30 13:05:19 current lr: [0.001]
+03-30 13:05:28 Epoch: 15 train-Loss: 0.1913 train-F1Score: 0.9365 train-missing_rate:0.0363 train-false_rate:0.0378 Cost 9.5148 sec
+03-30 13:05:29 Epoch: 15 val-Loss: 0.1802 val-F1Score: 0.9376 val-missing_rate:0.0668 val-false_rate:0.0652 Cost 1.3706 sec
+03-30 13:05:30 -----Epoch 16/99-----
+03-30 13:05:30 current lr: [0.001]
+03-30 13:05:39 Epoch: 16 train-Loss: 0.1586 train-F1Score: 0.9491 train-missing_rate:0.0263 train-false_rate:0.0333 Cost 9.5301 sec
+03-30 13:05:40 Epoch: 16 val-Loss: 0.1718 val-F1Score: 0.9493 val-missing_rate:0.0481 val-false_rate:0.0592 Cost 1.3216 sec
+03-30 13:05:40 save best model epoch 16, acc 0.9493
+03-30 13:05:40 -----Epoch 17/99-----
+03-30 13:05:40 current lr: [0.001]
+03-30 13:05:51 Epoch: 17 train-Loss: 0.1750 train-F1Score: 0.9429 train-missing_rate:0.0318 train-false_rate:0.0348 Cost 10.3857 sec
+03-30 13:05:52 Epoch: 17 val-Loss: 0.1838 val-F1Score: 0.9416 val-missing_rate:0.0588 val-false_rate:0.0628 Cost 1.3490 sec
+03-30 13:05:52 -----Epoch 18/99-----
+03-30 13:05:52 current lr: [0.001]
+03-30 13:06:02 Epoch: 18 train-Loss: 0.1613 train-F1Score: 0.9453 train-missing_rate:0.0318 train-false_rate:0.0318 Cost 9.8759 sec
+03-30 13:06:03 Epoch: 18 val-Loss: 0.2022 val-F1Score: 0.9413 val-missing_rate:0.0652 val-false_rate:0.0537 Cost 1.3430 sec
+03-30 13:06:03 -----Epoch 19/99-----
+03-30 13:06:03 current lr: [0.001]
+03-30 13:06:13 Epoch: 19 train-Loss: 0.1502 train-F1Score: 0.9574 train-missing_rate:0.0234 train-false_rate:0.0263 Cost 9.5065 sec
+03-30 13:06:14 Epoch: 19 val-Loss: 0.1770 val-F1Score: 0.9539 val-missing_rate:0.0441 val-false_rate:0.0497 Cost 1.3531 sec
+03-30 13:06:14 save best model epoch 19, acc 0.9539
+03-30 13:06:14 -----Epoch 20/99-----
+03-30 13:06:14 current lr: [0.001]
+03-30 13:06:24 Epoch: 20 train-Loss: 0.1442 train-F1Score: 0.9599 train-missing_rate:0.0229 train-false_rate:0.0239 Cost 9.5091 sec
+03-30 13:06:25 Epoch: 20 val-Loss: 0.1474 val-F1Score: 0.9602 val-missing_rate:0.0417 val-false_rate:0.0421 Cost 1.3052 sec
+03-30 13:06:25 save best model epoch 20, acc 0.9602
+03-30 13:06:25 -----Epoch 21/99-----
+03-30 13:06:25 current lr: [0.001]
+03-30 13:06:35 Epoch: 21 train-Loss: 0.1587 train-F1Score: 0.9498 train-missing_rate:0.0313 train-false_rate:0.0268 Cost 9.7613 sec
+03-30 13:06:36 Epoch: 21 val-Loss: 0.1575 val-F1Score: 0.9508 val-missing_rate:0.0565 val-false_rate:0.0473 Cost 1.3421 sec
+03-30 13:06:36 -----Epoch 22/99-----
+03-30 13:06:36 current lr: [0.001]
+03-30 13:06:46 Epoch: 22 train-Loss: 0.1514 train-F1Score: 0.9473 train-missing_rate:0.0283 train-false_rate:0.0333 Cost 9.5503 sec
+03-30 13:06:47 Epoch: 22 val-Loss: 0.1396 val-F1Score: 0.9498 val-missing_rate:0.0509 val-false_rate:0.0573 Cost 1.3320 sec
+03-30 13:06:47 -----Epoch 23/99-----
+03-30 13:06:47 current lr: [0.001]
+03-30 13:06:57 Epoch: 23 train-Loss: 0.1400 train-F1Score: 0.9587 train-missing_rate:0.0224 train-false_rate:0.0258 Cost 9.5605 sec
+03-30 13:06:58 Epoch: 23 val-Loss: 0.1504 val-F1Score: 0.9562 val-missing_rate:0.0429 val-false_rate:0.0469 Cost 1.3637 sec
+03-30 13:06:58 -----Epoch 24/99-----
+03-30 13:06:58 current lr: [0.001]
+03-30 13:07:08 Epoch: 24 train-Loss: 0.1440 train-F1Score: 0.9566 train-missing_rate:0.0239 train-false_rate:0.0268 Cost 9.4651 sec
+03-30 13:07:09 Epoch: 24 val-Loss: 0.1574 val-F1Score: 0.9547 val-missing_rate:0.0473 val-false_rate:0.0461 Cost 1.3175 sec
+03-30 13:07:09 -----Epoch 25/99-----
+03-30 13:07:09 current lr: [0.001]
+03-30 13:07:20 Epoch: 25 train-Loss: 0.1459 train-F1Score: 0.9547 train-missing_rate:0.0323 train-false_rate:0.0199 Cost 10.5577 sec
+03-30 13:07:22 Epoch: 25 val-Loss: 0.1855 val-F1Score: 0.9497 val-missing_rate:0.0632 val-false_rate:0.0366 Cost 1.9978 sec
+03-30 13:07:22 -----Epoch 26/99-----
+03-30 13:07:22 current lr: [0.001]
+03-30 13:07:32 Epoch: 26 train-Loss: 0.1378 train-F1Score: 0.9588 train-missing_rate:0.0204 train-false_rate:0.0278 Cost 10.0261 sec
+03-30 13:07:33 Epoch: 26 val-Loss: 0.1827 val-F1Score: 0.9537 val-missing_rate:0.0402 val-false_rate:0.0529 Cost 1.3925 sec
+03-30 13:07:33 -----Epoch 27/99-----
+03-30 13:07:33 current lr: [0.001]
+03-30 13:07:43 Epoch: 27 train-Loss: 0.1359 train-F1Score: 0.9621 train-missing_rate:0.0204 train-false_rate:0.0239 Cost 9.4601 sec
+03-30 13:07:44 Epoch: 27 val-Loss: 0.1650 val-F1Score: 0.9582 val-missing_rate:0.0406 val-false_rate:0.0437 Cost 1.3356 sec
+03-30 13:07:44 -----Epoch 28/99-----
+03-30 13:07:44 current lr: [0.001]
+03-30 13:07:54 Epoch: 28 train-Loss: 0.1239 train-F1Score: 0.9591 train-missing_rate:0.0224 train-false_rate:0.0253 Cost 10.1707 sec
+03-30 13:07:56 Epoch: 28 val-Loss: 0.2069 val-F1Score: 0.9482 val-missing_rate:0.0537 val-false_rate:0.0445 Cost 1.4396 sec
+03-30 13:07:56 -----Epoch 29/99-----
+03-30 13:07:56 current lr: [0.001]
+03-30 13:08:05 Epoch: 29 train-Loss: 0.1236 train-F1Score: 0.9641 train-missing_rate:0.0209 train-false_rate:0.0209 Cost 9.8696 sec
+03-30 13:08:07 Epoch: 29 val-Loss: 0.1375 val-F1Score: 0.9638 val-missing_rate:0.0398 val-false_rate:0.0358 Cost 1.3301 sec
+03-30 13:08:07 save best model epoch 29, acc 0.9638
+03-30 13:08:07 -----Epoch 30/99-----
+03-30 13:08:07 current lr: [0.001]
+03-30 13:08:16 Epoch: 30 train-Loss: 0.1224 train-F1Score: 0.9624 train-missing_rate:0.0229 train-false_rate:0.0209 Cost 9.4073 sec
+03-30 13:08:18 Epoch: 30 val-Loss: 0.1619 val-F1Score: 0.9587 val-missing_rate:0.0398 val-false_rate:0.0437 Cost 1.3511 sec
+03-30 13:08:18 -----Epoch 31/99-----
+03-30 13:08:18 current lr: [0.001]
+03-30 13:08:27 Epoch: 31 train-Loss: 0.1208 train-F1Score: 0.9625 train-missing_rate:0.0209 train-false_rate:0.0229 Cost 9.5297 sec
+03-30 13:08:28 Epoch: 31 val-Loss: 0.2185 val-F1Score: 0.9514 val-missing_rate:0.0525 val-false_rate:0.0386 Cost 1.3211 sec
+03-30 13:08:28 -----Epoch 32/99-----
+03-30 13:08:28 current lr: [0.001]
+03-30 13:08:38 Epoch: 32 train-Loss: 0.1187 train-F1Score: 0.9647 train-missing_rate:0.0184 train-false_rate:0.0229 Cost 9.8013 sec
+03-30 13:08:40 Epoch: 32 val-Loss: 0.1373 val-F1Score: 0.9637 val-missing_rate:0.0350 val-false_rate:0.0406 Cost 1.3117 sec
+03-30 13:08:40 -----Epoch 33/99-----
+03-30 13:08:40 current lr: [0.001]
+03-30 13:08:49 Epoch: 33 train-Loss: 0.1176 train-F1Score: 0.9646 train-missing_rate:0.0194 train-false_rate:0.0219 Cost 9.4756 sec
+03-30 13:08:50 Epoch: 33 val-Loss: 0.1210 val-F1Score: 0.9651 val-missing_rate:0.0342 val-false_rate:0.0398 Cost 1.3700 sec
+03-30 13:08:51 save best model epoch 33, acc 0.9651
+03-30 13:08:51 -----Epoch 34/99-----
+03-30 13:08:51 current lr: [0.001]
+03-30 13:09:00 Epoch: 34 train-Loss: 0.1329 train-F1Score: 0.9518 train-missing_rate:0.0273 train-false_rate:0.0288 Cost 9.4930 sec
+03-30 13:09:01 Epoch: 34 val-Loss: 0.2622 val-F1Score: 0.9440 val-missing_rate:0.0537 val-false_rate:0.0569 Cost 1.3370 sec
+03-30 13:09:01 -----Epoch 35/99-----
+03-30 13:09:01 current lr: [0.001]
+03-30 13:09:11 Epoch: 35 train-Loss: 0.1275 train-F1Score: 0.9625 train-missing_rate:0.0209 train-false_rate:0.0229 Cost 9.5563 sec
+03-30 13:09:13 Epoch: 35 val-Loss: 0.2282 val-F1Score: 0.9526 val-missing_rate:0.0465 val-false_rate:0.0437 Cost 1.6832 sec
+03-30 13:09:13 -----Epoch 36/99-----
+03-30 13:09:13 current lr: [0.001]
+03-30 13:09:22 Epoch: 36 train-Loss: 0.1156 train-F1Score: 0.9613 train-missing_rate:0.0268 train-false_rate:0.0179 Cost 9.5832 sec
+03-30 13:09:24 Epoch: 36 val-Loss: 0.1100 val-F1Score: 0.9638 val-missing_rate:0.0453 val-false_rate:0.0326 Cost 1.3320 sec
+03-30 13:09:24 -----Epoch 37/99-----
+03-30 13:09:24 current lr: [0.001]
+03-30 13:09:33 Epoch: 37 train-Loss: 0.1173 train-F1Score: 0.9612 train-missing_rate:0.0219 train-false_rate:0.0234 Cost 9.6739 sec
+03-30 13:09:35 Epoch: 37 val-Loss: 0.1182 val-F1Score: 0.9627 val-missing_rate:0.0386 val-false_rate:0.0414 Cost 1.3377 sec
+03-30 13:09:35 -----Epoch 38/99-----
+03-30 13:09:35 current lr: [0.001]
+03-30 13:09:44 Epoch: 38 train-Loss: 0.1086 train-F1Score: 0.9672 train-missing_rate:0.0169 train-false_rate:0.0214 Cost 9.3459 sec
+03-30 13:09:45 Epoch: 38 val-Loss: 0.1569 val-F1Score: 0.9638 val-missing_rate:0.0374 val-false_rate:0.0354 Cost 1.4541 sec
+03-30 13:09:45 -----Epoch 39/99-----
+03-30 13:09:45 current lr: [0.001]
+03-30 13:09:56 Epoch: 39 train-Loss: 0.1180 train-F1Score: 0.9641 train-missing_rate:0.0209 train-false_rate:0.0209 Cost 10.1090 sec
+03-30 13:09:57 Epoch: 39 val-Loss: 0.1531 val-F1Score: 0.9603 val-missing_rate:0.0437 val-false_rate:0.0358 Cost 1.4446 sec
+03-30 13:09:57 -----Epoch 40/99-----
+03-30 13:09:57 current lr: [0.001]
+03-30 13:10:07 Epoch: 40 train-Loss: 0.1242 train-F1Score: 0.9585 train-missing_rate:0.0249 train-false_rate:0.0234 Cost 9.9512 sec
+03-30 13:10:09 Epoch: 40 val-Loss: 0.4465 val-F1Score: 0.9349 val-missing_rate:0.0736 val-false_rate:0.0390 Cost 1.5221 sec
+03-30 13:10:09 -----Epoch 41/99-----
+03-30 13:10:09 current lr: [0.001]
+03-30 13:10:18 Epoch: 41 train-Loss: 0.1072 train-F1Score: 0.9671 train-missing_rate:0.0199 train-false_rate:0.0184 Cost 9.4867 sec
+03-30 13:10:19 Epoch: 41 val-Loss: 0.1627 val-F1Score: 0.9628 val-missing_rate:0.0406 val-false_rate:0.0334 Cost 1.3301 sec
+03-30 13:10:19 -----Epoch 42/99-----
+03-30 13:10:19 current lr: [0.001]
+03-30 13:10:29 Epoch: 42 train-Loss: 0.1184 train-F1Score: 0.9637 train-missing_rate:0.0219 train-false_rate:0.0204 Cost 9.4148 sec
+03-30 13:10:30 Epoch: 42 val-Loss: 0.1370 val-F1Score: 0.9626 val-missing_rate:0.0402 val-false_rate:0.0374 Cost 1.3471 sec
+03-30 13:10:30 -----Epoch 43/99-----
+03-30 13:10:30 current lr: [0.001]
+03-30 13:10:40 Epoch: 43 train-Loss: 0.1098 train-F1Score: 0.9649 train-missing_rate:0.0224 train-false_rate:0.0184 Cost 9.8165 sec
+03-30 13:10:41 Epoch: 43 val-Loss: 0.2221 val-F1Score: 0.9523 val-missing_rate:0.0553 val-false_rate:0.0322 Cost 1.3426 sec
+03-30 13:10:41 -----Epoch 44/99-----
+03-30 13:10:41 current lr: [0.001]
+03-30 13:10:51 Epoch: 44 train-Loss: 0.1290 train-F1Score: 0.9553 train-missing_rate:0.0239 train-false_rate:0.0283 Cost 9.6042 sec
+03-30 13:10:52 Epoch: 44 val-Loss: 0.4141 val-F1Score: 0.9306 val-missing_rate:0.0684 val-false_rate:0.0533 Cost 1.3225 sec
+03-30 13:10:52 -----Epoch 45/99-----
+03-30 13:10:52 current lr: [0.001]
+03-30 13:11:02 Epoch: 45 train-Loss: 0.1164 train-F1Score: 0.9636 train-missing_rate:0.0234 train-false_rate:0.0189 Cost 9.5017 sec
+03-30 13:11:03 Epoch: 45 val-Loss: 0.1650 val-F1Score: 0.9592 val-missing_rate:0.0473 val-false_rate:0.0338 Cost 1.3831 sec
+03-30 13:11:03 -----Epoch 46/99-----
+03-30 13:11:03 current lr: [0.001]
+03-30 13:11:13 Epoch: 46 train-Loss: 0.1097 train-F1Score: 0.9662 train-missing_rate:0.0204 train-false_rate:0.0189 Cost 9.5260 sec
+03-30 13:11:14 Epoch: 46 val-Loss: 0.1539 val-F1Score: 0.9617 val-missing_rate:0.0417 val-false_rate:0.0342 Cost 1.3206 sec
+03-30 13:11:14 -----Epoch 47/99-----
+03-30 13:11:14 current lr: [0.001]
+03-30 13:11:24 Epoch: 47 train-Loss: 0.1050 train-F1Score: 0.9649 train-missing_rate:0.0224 train-false_rate:0.0184 Cost 9.5004 sec
+03-30 13:11:25 Epoch: 47 val-Loss: 0.1596 val-F1Score: 0.9601 val-missing_rate:0.0473 val-false_rate:0.0314 Cost 1.3256 sec
+03-30 13:11:25 -----Epoch 48/99-----
+03-30 13:11:25 current lr: [0.001]
+03-30 13:11:35 Epoch: 48 train-Loss: 0.1014 train-F1Score: 0.9696 train-missing_rate:0.0184 train-false_rate:0.0169 Cost 9.5251 sec
+03-30 13:11:36 Epoch: 48 val-Loss: 0.1160 val-F1Score: 0.9698 val-missing_rate:0.0322 val-false_rate:0.0314 Cost 1.3186 sec
+03-30 13:11:36 save best model epoch 48, acc 0.9698
+03-30 13:11:36 -----Epoch 49/99-----
+03-30 13:11:36 current lr: [0.001]
+03-30 13:11:45 Epoch: 49 train-Loss: 0.1170 train-F1Score: 0.9603 train-missing_rate:0.0234 train-false_rate:0.0229 Cost 9.4917 sec
+03-30 13:11:47 Epoch: 49 val-Loss: 0.1260 val-F1Score: 0.9603 val-missing_rate:0.0406 val-false_rate:0.0429 Cost 1.7071 sec
+03-30 13:11:47 -----Epoch 50/99-----
+03-30 13:11:47 current lr: [0.001]
+03-30 13:11:57 Epoch: 50 train-Loss: 0.1024 train-F1Score: 0.9696 train-missing_rate:0.0199 train-false_rate:0.0154 Cost 9.7087 sec
+03-30 13:11:58 Epoch: 50 val-Loss: 0.1067 val-F1Score: 0.9697 val-missing_rate:0.0350 val-false_rate:0.0286 Cost 1.4321 sec
+03-30 13:11:58 -----Epoch 51/99-----
+03-30 13:11:58 current lr: [0.001]
+03-30 13:12:08 Epoch: 51 train-Loss: 0.0921 train-F1Score: 0.9706 train-missing_rate:0.0164 train-false_rate:0.0179 Cost 9.5040 sec
+03-30 13:12:09 Epoch: 51 val-Loss: 0.1178 val-F1Score: 0.9701 val-missing_rate:0.0310 val-false_rate:0.0314 Cost 1.3331 sec
+03-30 13:12:09 save best model epoch 51, acc 0.9701
+03-30 13:12:09 -----Epoch 52/99-----
+03-30 13:12:09 current lr: [0.001]
+03-30 13:12:19 Epoch: 52 train-Loss: 0.0938 train-F1Score: 0.9686 train-missing_rate:0.0219 train-false_rate:0.0144 Cost 9.4946 sec
+03-30 13:12:20 Epoch: 52 val-Loss: 0.2221 val-F1Score: 0.9618 val-missing_rate:0.0362 val-false_rate:0.0378 Cost 1.4111 sec
+03-30 13:12:20 -----Epoch 53/99-----
+03-30 13:12:20 current lr: [0.001]
+03-30 13:12:30 Epoch: 53 train-Loss: 0.0981 train-F1Score: 0.9694 train-missing_rate:0.0159 train-false_rate:0.0199 Cost 9.5039 sec
+03-30 13:12:31 Epoch: 53 val-Loss: 0.1103 val-F1Score: 0.9701 val-missing_rate:0.0298 val-false_rate:0.0338 Cost 1.3211 sec
+03-30 13:12:31 save best model epoch 53, acc 0.9701
+03-30 13:12:31 -----Epoch 54/99-----
+03-30 13:12:31 current lr: [0.001]
+03-30 13:12:41 Epoch: 54 train-Loss: 0.0959 train-F1Score: 0.9678 train-missing_rate:0.0219 train-false_rate:0.0154 Cost 9.6446 sec
+03-30 13:12:42 Epoch: 54 val-Loss: 0.1748 val-F1Score: 0.9613 val-missing_rate:0.0449 val-false_rate:0.0298 Cost 1.4906 sec
+03-30 13:12:42 -----Epoch 55/99-----
+03-30 13:12:42 current lr: [0.001]
+03-30 13:12:52 Epoch: 55 train-Loss: 0.0938 train-F1Score: 0.9709 train-missing_rate:0.0174 train-false_rate:0.0164 Cost 9.6107 sec
+03-30 13:12:53 Epoch: 55 val-Loss: 0.1107 val-F1Score: 0.9714 val-missing_rate:0.0318 val-false_rate:0.0286 Cost 1.3166 sec
+03-30 13:12:53 save best model epoch 55, acc 0.9714
+03-30 13:12:53 -----Epoch 56/99-----
+03-30 13:12:53 current lr: [0.001]
+03-30 13:13:03 Epoch: 56 train-Loss: 0.1073 train-F1Score: 0.9655 train-missing_rate:0.0189 train-false_rate:0.0214 Cost 9.6328 sec
+03-30 13:13:04 Epoch: 56 val-Loss: 0.1195 val-F1Score: 0.9641 val-missing_rate:0.0346 val-false_rate:0.0398 Cost 1.3951 sec
+03-30 13:13:04 -----Epoch 57/99-----
+03-30 13:13:04 current lr: [0.001]
+03-30 13:13:14 Epoch: 57 train-Loss: 0.0955 train-F1Score: 0.9713 train-missing_rate:0.0189 train-false_rate:0.0144 Cost 10.2759 sec
+03-30 13:13:16 Epoch: 57 val-Loss: 0.1460 val-F1Score: 0.9688 val-missing_rate:0.0382 val-false_rate:0.0247 Cost 1.4252 sec
+03-30 13:13:16 -----Epoch 58/99-----
+03-30 13:13:16 current lr: [0.001]
+03-30 13:13:27 Epoch: 58 train-Loss: 0.1057 train-F1Score: 0.9653 train-missing_rate:0.0224 train-false_rate:0.0179 Cost 10.9880 sec
+03-30 13:13:28 Epoch: 58 val-Loss: 0.1384 val-F1Score: 0.9643 val-missing_rate:0.0382 val-false_rate:0.0358 Cost 1.3616 sec
+03-30 13:13:28 -----Epoch 59/99-----
+03-30 13:13:28 current lr: [0.001]
+03-30 13:13:39 Epoch: 59 train-Loss: 0.1090 train-F1Score: 0.9616 train-missing_rate:0.0224 train-false_rate:0.0224 Cost 10.9639 sec
+03-30 13:13:41 Epoch: 59 val-Loss: 0.1836 val-F1Score: 0.9563 val-missing_rate:0.0461 val-false_rate:0.0406 Cost 1.4007 sec
+03-30 13:13:41 -----Epoch 60/99-----
+03-30 13:13:41 current lr: [0.001]
+03-30 13:13:52 Epoch: 60 train-Loss: 0.0821 train-F1Score: 0.9757 train-missing_rate:0.0134 train-false_rate:0.0149 Cost 11.6510 sec
+03-30 13:13:54 Epoch: 60 val-Loss: 0.1357 val-F1Score: 0.9721 val-missing_rate:0.0274 val-false_rate:0.0278 Cost 1.3805 sec
+03-30 13:13:54 save best model epoch 60, acc 0.9721
+03-30 13:13:54 -----Epoch 61/99-----
+03-30 13:13:54 current lr: [0.001]
+03-30 13:14:04 Epoch: 61 train-Loss: 0.0976 train-F1Score: 0.9640 train-missing_rate:0.0229 train-false_rate:0.0189 Cost 10.1545 sec
+03-30 13:14:05 Epoch: 61 val-Loss: 0.1431 val-F1Score: 0.9609 val-missing_rate:0.0465 val-false_rate:0.0322 Cost 1.3176 sec
+03-30 13:14:05 -----Epoch 62/99-----
+03-30 13:14:05 current lr: [0.001]
+03-30 13:14:15 Epoch: 62 train-Loss: 0.0941 train-F1Score: 0.9704 train-missing_rate:0.0189 train-false_rate:0.0154 Cost 9.6189 sec
+03-30 13:14:16 Epoch: 62 val-Loss: 0.1122 val-F1Score: 0.9706 val-missing_rate:0.0350 val-false_rate:0.0266 Cost 1.3236 sec
+03-30 13:14:16 -----Epoch 63/99-----
+03-30 13:14:16 current lr: [0.001]
+03-30 13:14:26 Epoch: 63 train-Loss: 0.0965 train-F1Score: 0.9688 train-missing_rate:0.0184 train-false_rate:0.0179 Cost 9.8242 sec
+03-30 13:14:27 Epoch: 63 val-Loss: 0.1274 val-F1Score: 0.9672 val-missing_rate:0.0366 val-false_rate:0.0306 Cost 1.3200 sec
+03-30 13:14:27 -----Epoch 64/99-----
+03-30 13:14:27 current lr: [0.001]
+03-30 13:14:37 Epoch: 64 train-Loss: 0.0876 train-F1Score: 0.9730 train-missing_rate:0.0179 train-false_rate:0.0134 Cost 9.4340 sec
+03-30 13:14:38 Epoch: 64 val-Loss: 0.1093 val-F1Score: 0.9721 val-missing_rate:0.0314 val-false_rate:0.0262 Cost 1.3311 sec
+03-30 13:14:38 -----Epoch 65/99-----
+03-30 13:14:38 current lr: [0.001]
+03-30 13:14:48 Epoch: 65 train-Loss: 0.0881 train-F1Score: 0.9757 train-missing_rate:0.0124 train-false_rate:0.0159 Cost 9.4654 sec
+03-30 13:14:49 Epoch: 65 val-Loss: 0.1375 val-F1Score: 0.9724 val-missing_rate:0.0215 val-false_rate:0.0338 Cost 1.2967 sec
+03-30 13:14:49 save best model epoch 65, acc 0.9724
+03-30 13:14:49 -----Epoch 66/99-----
+03-30 13:14:49 current lr: [0.001]
+03-30 13:14:59 Epoch: 66 train-Loss: 0.0856 train-F1Score: 0.9747 train-missing_rate:0.0164 train-false_rate:0.0129 Cost 9.5672 sec
+03-30 13:15:00 Epoch: 66 val-Loss: 0.0963 val-F1Score: 0.9762 val-missing_rate:0.0282 val-false_rate:0.0231 Cost 1.3275 sec
+03-30 13:15:00 save best model epoch 66, acc 0.9762
+03-30 13:15:00 -----Epoch 67/99-----
+03-30 13:15:00 current lr: [0.001]
+03-30 13:15:10 Epoch: 67 train-Loss: 0.0922 train-F1Score: 0.9712 train-missing_rate:0.0209 train-false_rate:0.0124 Cost 9.5457 sec
+03-30 13:15:11 Epoch: 67 val-Loss: 0.2772 val-F1Score: 0.9549 val-missing_rate:0.0501 val-false_rate:0.0286 Cost 1.3270 sec
+03-30 13:15:11 -----Epoch 68/99-----
+03-30 13:15:11 current lr: [0.001]
+03-30 13:15:21 Epoch: 68 train-Loss: 0.1079 train-F1Score: 0.9623 train-missing_rate:0.0239 train-false_rate:0.0199 Cost 9.6538 sec
+03-30 13:15:22 Epoch: 68 val-Loss: 0.1125 val-F1Score: 0.9619 val-missing_rate:0.0425 val-false_rate:0.0370 Cost 1.4646 sec
+03-30 13:15:22 -----Epoch 69/99-----
+03-30 13:15:22 current lr: [0.001]
+03-30 13:15:31 Epoch: 69 train-Loss: 0.0873 train-F1Score: 0.9760 train-missing_rate:0.0154 train-false_rate:0.0124 Cost 9.4056 sec
+03-30 13:15:33 Epoch: 69 val-Loss: 0.1307 val-F1Score: 0.9719 val-missing_rate:0.0266 val-false_rate:0.0286 Cost 1.2566 sec
+03-30 13:15:33 -----Epoch 70/99-----
+03-30 13:15:33 current lr: [0.001]
+03-30 13:15:42 Epoch: 70 train-Loss: 0.0855 train-F1Score: 0.9739 train-missing_rate:0.0159 train-false_rate:0.0144 Cost 8.9445 sec
+03-30 13:15:43 Epoch: 70 val-Loss: 0.1266 val-F1Score: 0.9706 val-missing_rate:0.0330 val-false_rate:0.0254 Cost 1.2430 sec
+03-30 13:15:43 -----Epoch 71/99-----
+03-30 13:15:43 current lr: [0.001]
+03-30 13:15:53 Epoch: 71 train-Loss: 0.0808 train-F1Score: 0.9769 train-missing_rate:0.0154 train-false_rate:0.0114 Cost 9.5474 sec
+03-30 13:15:54 Epoch: 71 val-Loss: 0.2331 val-F1Score: 0.9635 val-missing_rate:0.0410 val-false_rate:0.0227 Cost 1.3700 sec
+03-30 13:15:54 -----Epoch 72/99-----
+03-30 13:15:54 current lr: [0.001]
+03-30 13:16:03 Epoch: 72 train-Loss: 0.0935 train-F1Score: 0.9704 train-missing_rate:0.0199 train-false_rate:0.0144 Cost 9.2351 sec
+03-30 13:16:04 Epoch: 72 val-Loss: 0.1179 val-F1Score: 0.9684 val-missing_rate:0.0346 val-false_rate:0.0298 Cost 1.2501 sec
+03-30 13:16:04 -----Epoch 73/99-----
+03-30 13:16:04 current lr: [0.001]
+03-30 13:16:13 Epoch: 73 train-Loss: 0.0846 train-F1Score: 0.9733 train-missing_rate:0.0204 train-false_rate:0.0104 Cost 8.9090 sec
+03-30 13:16:15 Epoch: 73 val-Loss: 0.1153 val-F1Score: 0.9723 val-missing_rate:0.0354 val-false_rate:0.0215 Cost 1.2466 sec
+03-30 13:16:15 -----Epoch 74/99-----
+03-30 13:16:15 current lr: [0.001]
+03-30 13:16:24 Epoch: 74 train-Loss: 0.0815 train-F1Score: 0.9744 train-missing_rate:0.0149 train-false_rate:0.0149 Cost 8.9198 sec
+03-30 13:16:25 Epoch: 74 val-Loss: 0.1021 val-F1Score: 0.9731 val-missing_rate:0.0282 val-false_rate:0.0270 Cost 1.2395 sec
+03-30 13:16:25 -----Epoch 75/99-----
+03-30 13:16:25 current lr: [0.001]
+03-30 13:16:34 Epoch: 75 train-Loss: 0.0650 train-F1Score: 0.9829 train-missing_rate:0.0114 train-false_rate:0.0084 Cost 8.8863 sec
+03-30 13:16:35 Epoch: 75 val-Loss: 0.0924 val-F1Score: 0.9813 val-missing_rate:0.0207 val-false_rate:0.0171 Cost 1.2215 sec
+03-30 13:16:35 save best model epoch 75, acc 0.9813
+03-30 13:16:35 -----Epoch 76/99-----
+03-30 13:16:35 current lr: [0.001]
+03-30 13:16:44 Epoch: 76 train-Loss: 0.0959 train-F1Score: 0.9658 train-missing_rate:0.0214 train-false_rate:0.0184 Cost 9.3319 sec
+03-30 13:16:46 Epoch: 76 val-Loss: 0.2433 val-F1Score: 0.9505 val-missing_rate:0.0557 val-false_rate:0.0330 Cost 1.2626 sec
+03-30 13:16:46 -----Epoch 77/99-----
+03-30 13:16:46 current lr: [0.001]
+03-30 13:16:55 Epoch: 77 train-Loss: 0.0945 train-F1Score: 0.9722 train-missing_rate:0.0179 train-false_rate:0.0144 Cost 9.0663 sec
+03-30 13:16:56 Epoch: 77 val-Loss: 0.1269 val-F1Score: 0.9718 val-missing_rate:0.0310 val-false_rate:0.0278 Cost 1.2475 sec
+03-30 13:16:56 -----Epoch 78/99-----
+03-30 13:16:56 current lr: [0.001]
+03-30 13:17:05 Epoch: 78 train-Loss: 0.0816 train-F1Score: 0.9765 train-missing_rate:0.0134 train-false_rate:0.0139 Cost 8.8868 sec
+03-30 13:17:06 Epoch: 78 val-Loss: 0.1084 val-F1Score: 0.9763 val-missing_rate:0.0235 val-false_rate:0.0262 Cost 1.2631 sec
+03-30 13:17:06 -----Epoch 79/99-----
+03-30 13:17:06 current lr: [0.001]
+03-30 13:17:15 Epoch: 79 train-Loss: 0.0964 train-F1Score: 0.9709 train-missing_rate:0.0179 train-false_rate:0.0159 Cost 9.1238 sec
+03-30 13:17:17 Epoch: 79 val-Loss: 0.1100 val-F1Score: 0.9711 val-missing_rate:0.0310 val-false_rate:0.0298 Cost 1.2416 sec
+03-30 13:17:17 -----Epoch 80/99-----
+03-30 13:17:17 current lr: [0.001]
+03-30 13:17:26 Epoch: 80 train-Loss: 0.0950 train-F1Score: 0.9680 train-missing_rate:0.0179 train-false_rate:0.0194 Cost 9.0110 sec
+03-30 13:17:27 Epoch: 80 val-Loss: 0.1456 val-F1Score: 0.9655 val-missing_rate:0.0366 val-false_rate:0.0334 Cost 1.2360 sec
+03-30 13:17:27 -----Epoch 81/99-----
+03-30 13:17:27 current lr: [0.001]
+03-30 13:17:36 Epoch: 81 train-Loss: 0.0774 train-F1Score: 0.9747 train-missing_rate:0.0169 train-false_rate:0.0124 Cost 8.9488 sec
+03-30 13:17:37 Epoch: 81 val-Loss: 0.1093 val-F1Score: 0.9741 val-missing_rate:0.0294 val-false_rate:0.0243 Cost 1.2376 sec
+03-30 13:17:37 -----Epoch 82/99-----
+03-30 13:17:37 current lr: [0.001]
+03-30 13:17:46 Epoch: 82 train-Loss: 0.0989 train-F1Score: 0.9696 train-missing_rate:0.0189 train-false_rate:0.0164 Cost 9.2629 sec
+03-30 13:17:48 Epoch: 82 val-Loss: 0.1207 val-F1Score: 0.9701 val-missing_rate:0.0330 val-false_rate:0.0302 Cost 1.4500 sec
+03-30 13:17:48 -----Epoch 83/99-----
+03-30 13:17:48 current lr: [0.001]
+03-30 13:17:57 Epoch: 83 train-Loss: 0.1149 train-F1Score: 0.9601 train-missing_rate:0.0258 train-false_rate:0.0204 Cost 9.3973 sec
+03-30 13:17:58 Epoch: 83 val-Loss: 0.2099 val-F1Score: 0.9520 val-missing_rate:0.0573 val-false_rate:0.0350 Cost 1.2556 sec
+03-30 13:17:58 -----Epoch 84/99-----
+03-30 13:17:58 current lr: [0.001]
+03-30 13:18:08 Epoch: 84 train-Loss: 0.1033 train-F1Score: 0.9645 train-missing_rate:0.0219 train-false_rate:0.0194 Cost 9.2433 sec
+03-30 13:18:09 Epoch: 84 val-Loss: 0.1102 val-F1Score: 0.9642 val-missing_rate:0.0410 val-false_rate:0.0338 Cost 1.2371 sec
+03-30 13:18:09 -----Epoch 85/99-----
+03-30 13:18:09 current lr: [0.001]
+03-30 13:18:18 Epoch: 85 train-Loss: 0.0738 train-F1Score: 0.9783 train-missing_rate:0.0114 train-false_rate:0.0139 Cost 9.0087 sec
+03-30 13:18:19 Epoch: 85 val-Loss: 0.0976 val-F1Score: 0.9756 val-missing_rate:0.0223 val-false_rate:0.0266 Cost 1.2861 sec
+03-30 13:18:19 -----Epoch 86/99-----
+03-30 13:18:19 current lr: [0.001]
+03-30 13:18:30 Epoch: 86 train-Loss: 0.0833 train-F1Score: 0.9752 train-missing_rate:0.0149 train-false_rate:0.0139 Cost 10.8628 sec
+03-30 13:18:32 Epoch: 86 val-Loss: 0.1096 val-F1Score: 0.9735 val-missing_rate:0.0278 val-false_rate:0.0262 Cost 1.4636 sec
+03-30 13:18:32 -----Epoch 87/99-----
+03-30 13:18:32 current lr: [0.001]
+03-30 13:18:42 Epoch: 87 train-Loss: 0.0881 train-F1Score: 0.9709 train-missing_rate:0.0189 train-false_rate:0.0149 Cost 9.9472 sec
+03-30 13:18:43 Epoch: 87 val-Loss: 0.1248 val-F1Score: 0.9695 val-missing_rate:0.0370 val-false_rate:0.0254 Cost 1.3535 sec
+03-30 13:18:43 -----Epoch 88/99-----
+03-30 13:18:43 current lr: [0.001]
+03-30 13:18:55 Epoch: 88 train-Loss: 0.0785 train-F1Score: 0.9761 train-missing_rate:0.0134 train-false_rate:0.0144 Cost 12.2424 sec
+03-30 13:18:57 Epoch: 88 val-Loss: 0.1301 val-F1Score: 0.9742 val-missing_rate:0.0243 val-false_rate:0.0282 Cost 1.4261 sec
+03-30 13:18:57 -----Epoch 89/99-----
+03-30 13:18:57 current lr: [0.001]
+03-30 13:19:08 Epoch: 89 train-Loss: 0.0877 train-F1Score: 0.9696 train-missing_rate:0.0184 train-false_rate:0.0169 Cost 11.2673 sec
+03-30 13:19:09 Epoch: 89 val-Loss: 0.1677 val-F1Score: 0.9637 val-missing_rate:0.0402 val-false_rate:0.0302 Cost 1.4861 sec
+03-30 13:19:09 -----Epoch 90/99-----
+03-30 13:19:09 current lr: [0.001]
+03-30 13:19:21 Epoch: 90 train-Loss: 0.0938 train-F1Score: 0.9692 train-missing_rate:0.0194 train-false_rate:0.0164 Cost 11.5652 sec
+03-30 13:19:23 Epoch: 90 val-Loss: 0.1607 val-F1Score: 0.9659 val-missing_rate:0.0322 val-false_rate:0.0366 Cost 1.8706 sec
+03-30 13:19:23 -----Epoch 91/99-----
+03-30 13:19:23 current lr: [0.001]
+03-30 13:19:33 Epoch: 91 train-Loss: 0.0883 train-F1Score: 0.9689 train-missing_rate:0.0169 train-false_rate:0.0194 Cost 10.5243 sec
+03-30 13:19:35 Epoch: 91 val-Loss: 0.1179 val-F1Score: 0.9691 val-missing_rate:0.0302 val-false_rate:0.0350 Cost 1.4037 sec
+03-30 13:19:35 -----Epoch 92/99-----
+03-30 13:19:35 current lr: [0.001]
+03-30 13:19:45 Epoch: 92 train-Loss: 0.0919 train-F1Score: 0.9704 train-missing_rate:0.0199 train-false_rate:0.0144 Cost 9.9735 sec
+03-30 13:19:47 Epoch: 92 val-Loss: 0.1288 val-F1Score: 0.9693 val-missing_rate:0.0350 val-false_rate:0.0282 Cost 1.7212 sec
+03-30 13:19:47 -----Epoch 93/99-----
+03-30 13:19:47 current lr: [0.001]
+03-30 13:19:57 Epoch: 93 train-Loss: 0.1011 train-F1Score: 0.9663 train-missing_rate:0.0189 train-false_rate:0.0204 Cost 10.3939 sec
+03-30 13:19:58 Epoch: 93 val-Loss: 0.1561 val-F1Score: 0.9632 val-missing_rate:0.0386 val-false_rate:0.0358 Cost 1.4346 sec
+03-30 13:19:59 -----Epoch 94/99-----
+03-30 13:19:59 current lr: [0.001]
+03-30 13:20:09 Epoch: 94 train-Loss: 0.0724 train-F1Score: 0.9777 train-missing_rate:0.0149 train-false_rate:0.0109 Cost 10.9504 sec
+03-30 13:20:11 Epoch: 94 val-Loss: 0.1019 val-F1Score: 0.9775 val-missing_rate:0.0258 val-false_rate:0.0211 Cost 1.9121 sec
+03-30 13:20:11 -----Epoch 95/99-----
+03-30 13:20:11 current lr: [0.001]
+03-30 13:20:23 Epoch: 95 train-Loss: 0.0735 train-F1Score: 0.9752 train-missing_rate:0.0149 train-false_rate:0.0139 Cost 11.3654 sec
+03-30 13:20:24 Epoch: 95 val-Loss: 0.1174 val-F1Score: 0.9738 val-missing_rate:0.0274 val-false_rate:0.0262 Cost 1.4006 sec
+03-30 13:20:24 -----Epoch 96/99-----
+03-30 13:20:24 current lr: [0.001]
+03-30 13:20:36 Epoch: 96 train-Loss: 0.0796 train-F1Score: 0.9770 train-missing_rate:0.0124 train-false_rate:0.0144 Cost 11.3582 sec
+03-30 13:20:37 Epoch: 96 val-Loss: 0.1158 val-F1Score: 0.9770 val-missing_rate:0.0215 val-false_rate:0.0270 Cost 1.2448 sec
+03-30 13:20:37 -----Epoch 97/99-----
+03-30 13:20:37 current lr: [0.001]
+03-30 13:20:48 Epoch: 97 train-Loss: 0.0796 train-F1Score: 0.9735 train-missing_rate:0.0164 train-false_rate:0.0144 Cost 10.7033 sec
+03-30 13:20:49 Epoch: 97 val-Loss: 0.1106 val-F1Score: 0.9731 val-missing_rate:0.0306 val-false_rate:0.0254 Cost 1.3641 sec
+03-30 13:20:49 -----Epoch 98/99-----
+03-30 13:20:49 current lr: [0.001]
+03-30 13:20:59 Epoch: 98 train-Loss: 0.0832 train-F1Score: 0.9726 train-missing_rate:0.0169 train-false_rate:0.0149 Cost 10.1729 sec
+03-30 13:21:00 Epoch: 98 val-Loss: 0.1178 val-F1Score: 0.9713 val-missing_rate:0.0326 val-false_rate:0.0262 Cost 1.2681 sec
+03-30 13:21:00 -----Epoch 99/99-----
+03-30 13:21:00 current lr: [0.001]
+03-30 13:21:10 Epoch: 99 train-Loss: 0.0721 train-F1Score: 0.9756 train-missing_rate:0.0149 train-false_rate:0.0134 Cost 9.5022 sec
+03-30 13:21:11 Epoch: 99 val-Loss: 0.2531 val-F1Score: 0.9616 val-missing_rate:0.0394 val-false_rate:0.0278 Cost 1.3586 sec
+03-30 13:21:11 save best model epoch 99, acc 0.9616

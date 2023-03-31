@@ -16,6 +16,7 @@ def KNN_classify(k,X_set,x):
     nearest = np.argsort(distances)
     node_index  = [i for i in nearest[1:k+1]]
     topK_x = [X_set[i] for i in nearest[1:k+1]]
+    # print("node_index",node_index)
     return  node_index,topK_x
 
 
@@ -25,6 +26,7 @@ def KNN_weigt(x,topK_x):
     data_2 = topK_x
     for i in range(len(data_2)):
         v_2 = data_2[i]
+        
         combine = np.vstack([v_1, v_2])
         likely = pdist(combine, 'euclidean')
         distance.append(likely[0])
@@ -46,16 +48,29 @@ def KNN_attr(data):
         # x ->single node in each 
         # data-> each graph
         x = data[i]
-        node_index, topK_x= KNN_classify(5,data,x)
+        # print("len(data)",len(data))
+        if len(data) == 2:
+           node_index, topK_x= KNN_classify(1,data,x)
+           local_index = np.zeros(1)+i
+        elif len(data) == 3:
+            node_index, topK_x= KNN_classify(2,data,x)
+            local_index = np.zeros(2)+i
+        elif len(data) > 3 :
+            node_index, topK_x= KNN_classify(5,data,x)
+            local_index = np.zeros(5)+i
+        else:
+            print("Invalid input graph")
+        
         loal_weigt = KNN_weigt(x,topK_x)
-        local_index = np.zeros(5)+i
+        
 
         edge_raw0 = np.hstack((edge_raw0,local_index))
         edge_raw1 = np.hstack((edge_raw1,node_index))
         edge_fea = np.hstack((edge_fea,loal_weigt))
 
     edge_index = [edge_raw0, edge_raw1]
-
+    # print("edge_raw0",edge_raw0)
+    # print("edge_raw1",edge_raw1)
     return edge_index, edge_fea
 
 
@@ -156,7 +171,11 @@ def Gen_graph(graphType, data, label,task):
             # for i,value in enumerate(node_edge):
             #     edge_index[i] = np.array(value)
             # edge_index = np.concatenate(node_edge, axis=0)
+            # print("len(node_edge)",len(node_edge[1][0]))
             node_edge = np.array(node_edge)
+            # print("node_edge_array",node_edge)
+            # print("len(node_edge)",len(node_edge))
+            # node_edge = node_edge.astype('float')
             edge_index = torch.tensor(node_edge, dtype=torch.long)
             edge_features = torch.tensor(w, dtype=torch.float)
             # Generate graphs using 

@@ -4,7 +4,7 @@ import glob
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from tqdm import tqdm
-from datasets.KNNGraph import KNNGraph
+from datasets.RadiusGraph import RadiusGraph
 from datasets.AuxFunction import FFT
 import pickle
 # ------------------------------------------------------------
@@ -17,7 +17,7 @@ label = [i for i in range(2)]
 
 
 # generate Training Dataset and Testing Dataset
-def get_files(sample_length, root, InputType, task,test=False):
+def get_files(sample_length, root, InputType, task, overlapping_number, test=False):
     '''
     This function is used to generate the final training set and test set.
     root:The location of the data set
@@ -28,9 +28,9 @@ def get_files(sample_length, root, InputType, task,test=False):
     
     paths = glob.glob("data/SKABMD/*.csv")
     # paths = [p for p in paths if p.find("acc2")>0]
-
+    print("overlapping_number",overlapping_number)
     for j,path in enumerate(paths):
-        data1 = data_load(sample_length,filename=path, label=j,InputType=InputType,task=task)
+        data1 = data_load(sample_length,filename=path, label=j,InputType=InputType,task=task,overlapping_number = overlapping_number )
         # print('Number of generated graphs in the following path('+path+')->'+len(data1))
         data += data1
     # This for loop is to get all 9 channel1 fault data as data
@@ -49,13 +49,32 @@ def get_files(sample_length, root, InputType, task,test=False):
 
     return data
 
+# generate graohs which have overlapping nodes
+def get_overlapping_subarrays(arr, window_size, stride):
+    """
+    Returns a list of overlapping subarrays of size window_size from the given array.
+
+    Args:
+        arr (list): The input array.
+        window_size (int): The size of the sliding window.
+        stride (int): The stride for sliding the window.
+
+    Returns:
+        A list of overlapping subarrays.
+    """
+    arr = arr.transpose()
+    result = []
+    for i in range(0, len(arr) - window_size + 1, stride):
+        result.append(arr[i:i+window_size])
+    return result
+
 # Define a function to normalize a column of the dataframe
 def normalize_col(col):
     col_numeric = pd.to_numeric(col, errors='coerce')
     col_normalized = (col_numeric - col_numeric.min()) / (col_numeric.max() - col_numeric.min())
     return col_normalized
 
-def data_load(signal_size,filename, label, InputType, task):
+def data_load(signal_size,filename, label, InputType, task, overlapping_number):
     '''
     This function is mainly used to generate test data and training data.
     filename:Data location
@@ -82,23 +101,41 @@ def data_load(signal_size,filename, label, InputType, task):
     # gives the maximum number of elements that can be used in the signals while ensuring that the signals are all of equal size
     max_length =(fl.shape[0] // signal_size) * signal_size
     start, end = 0, signal_size
+    # print("overlapping_number", overlapping_number)
     # print("fl[:max_length].shape[0]",fl[:max_length].shape[0])
-    while end <= fl[:max_length].shape[0]:
-        if InputType == "TD":
-            x = fl[start:end]
-            x = x.transpose()
-            # print("x",x)
-        elif InputType == "FD":
-            x = fl[start:end]
-            x = FFT(x)
-        else:
-            print("The InputType is wrong!!")
-        # List of nodes. here each nodes are list which contains the node features with lenth as signal_size
-        data.append(x)
-        start += signal_size
-        end += signal_size
+    if overlapping_number == 0:
+        # print("HelloHello")
+        while end <= fl[:max_length].shape[0]:
+            if InputType == "TD":
+                x = fl[start:end]
+                x = x.transpose()
+                # print("x",x)
+            elif InputType == "FD":
+                x = fl[start:end]
+                x = FFT(x)
+            else:
+                print("The InputType is wrong!!")
+            # List of nodes. here each nodes are list which contains the node features with lenth as signal_size
+            data.append(x)
+            start += signal_size
+            end += signal_size
+    elif overlapping_number > 0:
+        # data.append(get_overlapping_subarrays(fl[:max_length], signal_size, overlapping_number))
+        fl = fl.transpose()
+        for row in fl:
+            result =get_overlapping_subarrays(row, signal_size, overlapping_number) 
+            # print(result)
+            data.append(result)
 
-    graphset = KNNGraph(9,data,label,task)
+        # Print the new array
+        data = list(zip(*data))
+        data = np.array(data)
+        # print(data[1])
+    else:
+        print("The overapping number is invalid!!")
+
+
+    graphset = RadiusGraph(9,data,label,task)
     print("length of graphset",len(graphset),len(graphset[0]))
     return graphset
 
@@ -108,11 +145,12 @@ class SKABMDRadius(object):
     num_classes = 2
 
 
-    def __init__(self, sample_length, data_dir,InputType,task):
+    def __init__(self, sample_length, data_dir,InputType,task,overlapping_number):
         self.sample_length = sample_length
         self.data_dir = data_dir
         self.InputType = InputType
         self.task = task
+        self.overlapping_number = overlapping_number
 
 
 
@@ -121,7 +159,7 @@ class SKABMDRadius(object):
             with open(self.data_dir, 'rb') as fo:
                 list_data = pickle.load(fo, encoding='bytes')
         else:
-            list_data = get_files(self.sample_length, self.data_dir, self.InputType, self.task, test)
+            list_data = get_files(self.sample_length, self.data_dir, self.InputType, self.task, self.overlapping_number, test)
             with open(os.path.normpath(os.path.join('C:\\Users\\situser\\Desktop\\Vinothini\\SUTD\\PHMGNNBenchmark\\data\\SKABMD', "SKABMDRadius.pkl")), 'wb') as fo:
                 print("datadir",self.data_dir)
                 pickle.dump(list_data, fo)

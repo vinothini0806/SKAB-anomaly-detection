@@ -15,7 +15,7 @@ label = [i for i in range(2)]
 
 
 # generate Training Dataset and Testing Dataset
-def get_files(sample_length, root, InputType, task,test=False):
+def get_files(sample_length, root, InputType, task, overlapping_number, test=False):
     '''
     This function is used to generate the final training set and test set.
     root:The location of the data set
@@ -25,10 +25,10 @@ def get_files(sample_length, root, InputType, task,test=False):
     data = []
     
     paths = glob.glob("data/SKAB/*/*.csv")
-    paths = [p for p in paths if p.find("acc2")>0]
+    paths = [p for p in paths if p.find("acc1")>0]
 
     for j,path in enumerate(paths):
-        data1 = data_load(sample_length,filename=path, label=j,InputType=InputType,task=task)
+        data1 = data_load(sample_length,filename=path, label=j,InputType=InputType,task=task,overlapping_number = overlapping_number)
         data += data1
     # This for loop is to get all 9 channel1 fault data as data
     # for i in tqdm(range(4)):
@@ -47,7 +47,7 @@ def get_files(sample_length, root, InputType, task,test=False):
     return data
 
 
-def data_load(signal_size,filename, label, InputType, task):
+def data_load(signal_size,filename, label, InputType, task, overlapping_number):
     '''
     This function is mainly used to generate test data and training data.
     filename:Data location
@@ -83,11 +83,12 @@ class SKABKnn(object):
     num_classes = 2
 
 
-    def __init__(self, sample_length, data_dir,InputType,task):
+    def __init__(self, sample_length, data_dir,InputType,task,overlapping_number):
         self.sample_length = sample_length
         self.data_dir = data_dir
         self.InputType = InputType
         self.task = task
+        self.overlapping_number = overlapping_number
 
 
 
@@ -96,7 +97,7 @@ class SKABKnn(object):
             with open(self.data_dir, 'rb') as fo:
                 list_data = pickle.load(fo, encoding='bytes')
         else:
-            list_data = get_files(self.sample_length, self.data_dir, self.InputType, self.task, test)
+            list_data = get_files(self.sample_length, self.data_dir, self.InputType, self.task, self.overlapping_number, test)
             with open(os.path.join('C:\\Users\\situser\\Desktop\\Vinothini\\SUTD\\PHMGNNBenchmark\\data\\SKAB', "SKABKnn.pkl"), 'wb') as fo:
                 print("datadir",self.data_dir)
                 pickle.dump(list_data, fo)

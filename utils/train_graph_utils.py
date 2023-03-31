@@ -1,6 +1,9 @@
+
+# %load utils/train_graph_utils.py
 #!/usr/bin/python
-# -*- coding:utf-8 -*-
+# %matplotlib inline
 from sklearn.metrics import f1_score
+import matplotlib.pyplot as plt
 import logging
 import os
 import time
@@ -123,7 +126,7 @@ class train_utils(object):
         self.model.to(self.device)
         self.criterion = nn.CrossEntropyLoss()
         # self.criterion = nn.MSELoss()
-
+    
 
     def train(self):
         """
@@ -140,6 +143,8 @@ class train_utils(object):
         batch_loss = 0.0
         batch_acc = 0
         x = 0
+        val_F1_Score = []
+        train_F1_Score = []
         step_start = time.time()
         # args.max_model_num -> the number of most recent models to save
         save_list = Save_Tool(max_num=args.max_model_num)
@@ -158,7 +163,7 @@ class train_utils(object):
                 logging.info('current lr: {}'.format(self.lr_scheduler.get_last_lr()))
             else:
                 logging.info('current lr: {}'.format(args.lr))
-
+            
             # Each epoch has a training and val phase
             for phase in ['train', 'val']:
                 # Define the temp variable
@@ -260,7 +265,14 @@ class train_utils(object):
 
                 epoch_loss = epoch_loss / sample_num
                 # epoch_acc = epoch_acc / sample_num
-                epoch_acc = f1_score(label_list,pred_list)
+#                 label_list = torch.tensor(label_list)
+#                 pred_list = torch.tensor(pred_list)
+                epoch_acc = f1_score(torch.tensor(label_list).cpu(),torch.tensor(pred_list).cpu())
+                if phase == 'train':
+                    train_F1_Score.append(epoch_acc)
+                else:
+                    val_F1_Score.append(epoch_acc)
+                
                 for i,label in enumerate(label_list):
                     if label != pred_list[i]:
                         if label==1:
@@ -296,10 +308,13 @@ class train_utils(object):
                         logging.info("save best model epoch {}, acc {:.4f}".format(epoch, epoch_acc))
                         torch.save(model_state_dic,
                                    os.path.join(self.save_dir, '{}-{:.4f}-best_model.pth'.format(epoch, best_acc)))
+        print(train_F1_Score)
+        print(val_F1_Score)
+        plt.plot(train_F1_Score, val_F1_Score)
+        plt.show()
 
 
-
-
+        
 
 
 

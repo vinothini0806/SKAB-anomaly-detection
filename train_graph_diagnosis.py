@@ -15,7 +15,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Train')
     # basic parameters
     parser.add_argument('--model_name', type=str, default='ChebyNet', help='the name of the model')
-    parser.add_argument('--sample_length', type=int, default=9, help='batchsize of the training process')
+    parser.add_argument('--sample_length', type=int, default=10, help='batchsize of the training process')
     parser.add_argument('--data_name', type=str, default='XJTUGearboxKnn', help='the name of the data')
     parser.add_argument('--Input_type', choices=['TD', 'FD','other'],type=str, default='TD', help='the input type decides the length of input')
     parser.add_argument('--data_dir', type=str, default= "./data/XJTUGearbox/XJTUGearboxKnn.pkl", help='the directory of the data')
