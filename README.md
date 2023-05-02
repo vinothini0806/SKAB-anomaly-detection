@@ -1,5 +1,5 @@
 # Graph Convolutional Neural Netwrok
-## [The emerging graph convolutional neural network for intelligent fault diagnostics in SKAB Dataset](https://www.sciencedirect.com/science/article/pii/S0888327021009791)
+## [The emerging graph convolutional neural network for anomaly detection in SKAB Dataset](https://www.sciencedirect.com/science/article/pii/S0888327021009791)
 
 
 
@@ -37,11 +37,10 @@ Paper:
 * `model2` contians the implemented GCN model for graph-level rask
 
 # Run the code
-## For anomaly detection
-  * Node level fault daignostic <br>
-  python  ./train_graph_diagnosis.py --model_name GCN --data_name SKABMKnn --data_dir ./data/SKABM/SKABMKnn.pkl  --Input_type TD  --task Node   --checkpoint_dir ./checkpoint 
-  * Graph level fault daignostic <br>
-  python  ./train_graph_diagnosis.py --model_name GCN --data_name SKABMKnn --data_dir ./data/SKABM --Input_type TD  --task Graph --pooltype EdgePool  --checkpoint_dir ./checkpoint
+  * Node level anomaly detection <br>
+  python  ./train_graph_diagnosis.py --model_name GCN --data_name SKABMKnn --data_dir ./data/SKABM/SKABMKnn.pkl  --Input_type TD  --task Node   --checkpoint_dir ./checkpoint --file_name df_valve1
+  * Graph level anomaly detection <br>
+  python  ./train_graph_diagnosis.py --model_name GCN --data_name SKABMKnn --data_dir ./data/SKABM --Input_type TD  --task Graph --pooltype EdgePool  --checkpoint_dir ./checkpoint --file_name df_valve1
   
 ## The data for runing the demo
    In order to facilitate your implementation, we give some organized data here for node level-fault diagnosis and graph-level prognosis [`Data for demo`]
