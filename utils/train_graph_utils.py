@@ -2,7 +2,8 @@
 # %load utils/train_graph_utils.py
 #!/usr/bin/python
 # %matplotlib inline
-from sklearn.metrics import f1_score
+import numpy as np
+# from sklearn.metrics import f1_score
 import matplotlib.pyplot as plt
 import logging
 import os
@@ -19,7 +20,39 @@ from utils.save import Save_Tool
 from utils.freeze import set_freeze_by_id
 import pandas as pd
 
+def f1_score(y_true, y_pred):
+        """
+        Calculate the F1 score given the true labels and predicted labels.
+        
+        Args:
+            y_true (array-like): The true labels.
+            y_pred (array-like): The predicted labels.
+        
+        Returns:
+            f1_score (float): The F1 score.
+        """
+        # Calculate the number of true positives, false positives, and false negatives.
+        tp = sum((y_true == 0) & (y_pred == 0))
+        fp = sum((y_true == 1) & (y_pred == 0))
+        fn = sum((y_true == 0) & (y_pred == 1))
+              # Calculate precision and recall.
+        if tp + fp == 0:
+            precision = 0.0
+            print("precision",precision)
+        else:
+            precision = tp / (tp + fp)
+            print("precision",precision)
 
+  
+
+        recall = tp / (tp + fn)
+        print("recall",recall)
+        print("tp",tp)
+        print("fn",fn)
+        # Calculate the F1 score.
+        f1_score = 2 * (precision * recall) / (precision + recall)
+        
+        return f1_score
 class train_utils(object):
     def __init__(self, args, save_dir):
         self.args = args
@@ -54,7 +87,7 @@ class train_utils(object):
         # data_dir -> the directory of the data as pickle file after apply the KNN or Path or Radius
         # Input_type -> the input type decides the length of input
         # task -> Node classification or Graph classification
-        self.datasets['train'], self.datasets['val'] = Dataset(args.sample_length,args.data_dir, args.Input_type, args.task, args.overlapping_number).data_preprare()
+        self.datasets['train'], self.datasets['val'] = Dataset(args.sample_length,args.data_dir, args.Input_type, args.task, args.overlapping_number,args.file_name).data_preprare()
 
         # num_workers = number of training process
         self.dataloaders = {x: DataLoader(self.datasets[x], batch_size=args.batch_size,
@@ -76,7 +109,12 @@ class train_utils(object):
         if args.task == 'Node':
             self.model = getattr(models, args.model_name)(feature=feature,out_channel=Dataset.num_classes)
         elif args.task == 'Graph':
-            self.model = getattr(models2, args.model_name)(feature=feature, out_channel=Dataset.num_classes,pooltype=args.pooltype)
+            if args.pretrained_model == 1:
+                self.model = getattr(models2, args.model_name)(feature=feature, out_channel=Dataset.num_classes,pooltype=args.pooltype)
+                self.model.load_state_dict(torch.load('checkpoint\Graph_GCN_EdgePool_SKABM2Knn_TD_0420-104124\49-0.7899-best_model.pth'))
+            else:
+                self.model = getattr(models2, args.model_name)(feature=feature, out_channel=Dataset.num_classes,pooltype=args.pooltype)
+            
         else:
             print('The task is wrong!')
 
@@ -124,9 +162,9 @@ class train_utils(object):
 
         # Invert the model and define the loss
         self.model.to(self.device)
-        self.criterion = nn.CrossEntropyLoss()
-        # self.criterion = nn.MSELoss()
+        self.criterion = torch.nn.BCELoss()
     
+
 
     def train(self):
         """
@@ -136,7 +174,7 @@ class train_utils(object):
 
 
         args = self.args
-
+        threshold = 0.3
         step = 0
         best_acc = 0.0
         batch_count = 0
@@ -150,13 +188,7 @@ class train_utils(object):
         save_list = Save_Tool(max_num=args.max_model_num)
         # max_epoch -> number of epochs
         for epoch in range(self.start_epoch, args.max_epoch):
-            pred_list = []
-            label_list = []
             
-            num_missing_targets = 0
-            num_false_targets = 0
-            missing_alarm_rate = 0.0
-            False_alarm_rate = 0.0
             logging.info('-'*5 + 'Epoch {}/{}'.format(epoch, args.max_epoch - 1) + '-'*5)
             # Update the learning rate
             if self.lr_scheduler is not None:
@@ -170,7 +202,15 @@ class train_utils(object):
                 epoch_start = time.time()
                 epoch_acc = 0
                 epoch_loss = 0.0
-
+                pred_list = []
+                label_list = []
+                
+                tp = 0
+                tn = 0
+                num_missing_targets = 0
+                num_false_targets = 0
+                missing_alarm_rate = 0.0
+                False_alarm_rate = 0.0
                 # Set model to train mode or test mode
                 if phase == 'train':
                     # sets the model to train mode,
@@ -182,19 +222,13 @@ class train_utils(object):
                     self.model.eval()
                 sample_num = 0
                 # for loop for access traing and validation dta during each epoch
-                # print("self.dataloaders['train']",len(self.dataloaders['train']))
-                # print("self.dataloaders['val']",len(self.dataloaders['val']))
                 for data in self.dataloaders[phase]:
-                    # print("length of data")
-                    # print(len(data))
                     inputs = data.to(self.device)
                     labels = inputs.y
                     
                     x += len(inputs.batch)
-                    # print("inputs.batch",x)
                     if args.task == 'Node':
                         bacth_num = inputs.num_nodes
-                        # print("Number of nodes in batches= ",bacth_num)
                         sample_num += len(labels)
                     elif args.task == 'Graph':
                         bacth_num = inputs.num_graphs
@@ -207,21 +241,24 @@ class train_utils(object):
                         # forward
                         if  args.task == 'Node':
                             logits = self.model(inputs)
+                            # print("logits",len(logits))
                         elif args.task == 'Graph':
                             logits = self.model(inputs,args.pooltype)
                         else:
                             print("There is no such task!!")
-
+                        labels = torch.unsqueeze(labels, dim=1)
+                        labels = labels.float()
                         loss = self.criterion(logits, labels)
+                        
+
                         # pred -> predictions of node labels for univariate data 
                         # pred -> predictions of graph labels for multivariate data 
-                        pred = logits.argmax(dim=1)
-                        
+                        pred = logits
+                        if phase == 'val':
+                          print("pred val",pred)  
+                        pred = (pred > threshold).long()
                         pred_list = pred_list + list(pred)
-                        # print("number of predictions",len(list(pred)))
                         label_list = label_list + list(labels)
-                        
-                        # correct = f1_score(labels,pred)
                         
                         correct = torch.eq(pred, labels).float().sum().item()
                         loss_temp = loss.item() * bacth_num
@@ -239,35 +276,17 @@ class train_utils(object):
                             batch_acc += correct
                             batch_count += bacth_num
 
-                            # Print the training information
-                            # if step % args.print_step == 0:
-                            #     batch_loss = batch_loss / batch_count
-                            #     batch_acc = batch_acc / batch_count
-                            #     temp_time = time.time()
-                            #     train_time = temp_time - step_start
-                            #     step_start = temp_time
-                            #     batch_time = train_time / args.print_step if step != 0 else train_time
-                            #     sample_per_sec = 1.0*batch_count/train_time
-                            #     logging.info('Epoch: {}, Train Loss: {:.4f} Train Acc: {:.4f},'
-                            #                  '{:.1f} examples/sec {:.2f} sec/batch'.format(
-                            #         epoch, batch_loss, batch_acc, sample_per_sec, batch_time
-                            #     ))
-
-                            #     batch_acc = 0
-                            #     batch_loss = 0.0
-                            #     batch_count = 0
-                            # step += 1
-
                 if self.lr_scheduler is not None:
                     self.lr_scheduler.step()
 
                 # Print the train and val information via each epoch
 
                 epoch_loss = epoch_loss / sample_num
-                # epoch_acc = epoch_acc / sample_num
-#                 label_list = torch.tensor(label_list)
-#                 pred_list = torch.tensor(pred_list)
-                epoch_acc = f1_score(torch.tensor(label_list).cpu(),torch.tensor(pred_list).cpu())
+                label_list = [tensor.item() for tensor in label_list]
+                pred_list = [tensor.item() for tensor in pred_list]
+                label_list = np.array(label_list)
+                pred_list = np.array(pred_list)
+                epoch_acc = f1_score(label_list,pred_list)
                 if phase == 'train':
                     train_F1_Score.append(epoch_acc)
                 else:
@@ -279,14 +298,14 @@ class train_utils(object):
                             num_missing_targets += 1
                         elif label==0:
                             num_false_targets += 1
-                # print("batch count",len(label_list))
-                # print("num_missing_targets",num_missing_targets)
-                # print("num_false_targets",num_false_targets)
+                    else:
+                        if label==1:
+                            tn += 1
+                        elif label==0:
+                            tp += 1
                 missing_alarm_rate = num_missing_targets/len(label_list)
                 False_alarm_rate = num_false_targets/len(label_list)
-
-                # df_label_list = pd.DataFrame({"label":list(label_list),"pred":list(pred_list)})
-                # df_label_list.to_csv(f"results_{time.time()}.csv",index=False)
+                
                 logging.info('Epoch: {} {}-Loss: {:.4f} {}-F1Score: {:.4f} {}-missing_rate:{:.4f} {}-false_rate:{:.4f} Cost {:.4f} sec'.format(
                     epoch, phase, epoch_loss, phase, epoch_acc,phase ,missing_alarm_rate, phase,False_alarm_rate, time.time()-epoch_start
                 ))

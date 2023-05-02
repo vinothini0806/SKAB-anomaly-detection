@@ -15,33 +15,30 @@ class GCN(torch.nn.Module):
 
         self.GConv2 = GCNConv(1024,1024)
         self.bn2 = BatchNorm(1024)
-
         self.fc = nn.Sequential(nn.Linear(1024, 512), nn.ReLU(inplace=True))
         self.dropout = nn.Dropout(0.2)
-        self.fc1 = nn.Sequential(nn.Linear(512, out_channel))
+        self.fc1 = nn.Sequential(nn.Linear(512, 1))
 
 
     def forward(self, data, pooltype):
         x, edge_index, batch= data.x, data.edge_index, data.batch
-        # print('batch',len(batch))
         x = self.GConv1(x, edge_index)
         x = self.bn1(x)
         x = F.relu(x)
         x, edge_index, batch = self.poolresult(self.pool1,pooltype,x, edge_index, batch)
-        # print('batch',len(batch))
         x1 = global_mean_pool(x, batch)
 
         x = self.GConv2(x, edge_index)
         x = self.bn2(x)
         x = F.relu(x)
         x, edge_index, batch = self.poolresult(self.pool2, pooltype, x, edge_index, batch)
-        # print('batch',len(batch))
         x2 = global_mean_pool(x, batch)
 
         x = x1 + x2
         x = self.fc(x)
         x = self.dropout(x)
         x = self.fc1(x)
+        x = torch.sigmoid(x)
 
         return x
 

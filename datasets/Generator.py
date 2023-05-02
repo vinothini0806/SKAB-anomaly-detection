@@ -16,7 +16,6 @@ def KNN_classify(k,X_set,x):
     nearest = np.argsort(distances)
     node_index  = [i for i in nearest[1:k+1]]
     topK_x = [X_set[i] for i in nearest[1:k+1]]
-    # print("node_index",node_index)
     return  node_index,topK_x
 
 
@@ -26,7 +25,6 @@ def KNN_weigt(x,topK_x):
     data_2 = topK_x
     for i in range(len(data_2)):
         v_2 = data_2[i]
-        
         combine = np.vstack([v_1, v_2])
         likely = pdist(combine, 'euclidean')
         distance.append(likely[0])
@@ -48,7 +46,6 @@ def KNN_attr(data):
         # x ->single node in each 
         # data-> each graph
         x = data[i]
-        # print("len(data)",len(data))
         if len(data) == 2:
            node_index, topK_x= KNN_classify(1,data,x)
            local_index = np.zeros(1)+i
@@ -69,8 +66,6 @@ def KNN_attr(data):
         edge_fea = np.hstack((edge_fea,loal_weigt))
 
     edge_index = [edge_raw0, edge_raw1]
-    # print("edge_raw0",edge_raw0)
-    # print("edge_raw1",edge_raw1)
     return edge_index, edge_fea
 
 
@@ -166,16 +161,8 @@ def Gen_graph(graphType, data, label,task):
                 print("There is no such task!!")
             node_edge, w = KNN_attr(data[i])
             node_features = torch.tensor(graph_feature, dtype=torch.float)
-            graph_label = torch.tensor(labels, dtype=torch.long)  # 获得图标签
-            # print("length of node_edge",len(node_edge[0][0]))
-            # for i,value in enumerate(node_edge):
-            #     edge_index[i] = np.array(value)
-            # edge_index = np.concatenate(node_edge, axis=0)
-            # print("len(node_edge)",len(node_edge[1][0]))
+            graph_label = torch.tensor(labels, dtype=torch.long) 
             node_edge = np.array(node_edge)
-            # print("node_edge_array",node_edge)
-            # print("len(node_edge)",len(node_edge))
-            # node_edge = node_edge.astype('float')
             edge_index = torch.tensor(node_edge, dtype=torch.long)
             edge_features = torch.tensor(w, dtype=torch.float)
             # Generate graphs using 
@@ -199,7 +186,7 @@ def Gen_graph(graphType, data, label,task):
             node_edge, w = Radius_attr(graph_feature)
             # convert graph(node_features), graph_label,edge_index and  edge_features as tensors
             node_features = torch.tensor(graph_feature, dtype=torch.float)
-            graph_label = torch.tensor(labels, dtype=torch.long)  # 获得图标签
+            graph_label = torch.tensor(labels, dtype=torch.long)  
             edge_index = torch.tensor(node_edge, dtype=torch.long)
             # edge_features -> weights of each edge in the graph
             edge_features = torch.tensor(w, dtype=torch.float)
@@ -219,7 +206,7 @@ def Gen_graph(graphType, data, label,task):
                 print("There is no such task!!")
             node_edge, w = Path_attr(graph_feature)
             node_features = torch.tensor(graph_feature, dtype=torch.float)
-            graph_label = torch.tensor(labels, dtype=torch.long)  # 获得图标签
+            graph_label = torch.tensor(labels, dtype=torch.long)  
             edge_index = torch.tensor(node_edge, dtype=torch.long)
             edge_features = torch.tensor(w, dtype=torch.float)
             graph = Data(x=node_features, y=graph_label, edge_index=edge_index, edge_attr=edge_features)

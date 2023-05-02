@@ -14,11 +14,11 @@ args = None
 def parse_args():
     parser = argparse.ArgumentParser(description='Train')
     # basic parameters
-    parser.add_argument('--model_name', type=str, default='ChebyNet', help='the name of the model')
+    parser.add_argument('--model_name', type=str, default='GCN', help='the name of the model')
     parser.add_argument('--sample_length', type=int, default=10, help='batchsize of the training process')
-    parser.add_argument('--data_name', type=str, default='XJTUGearboxKnn', help='the name of the data')
+    parser.add_argument('--data_name', type=str, default='SKABAttr8Knn', help='the name of the data')
     parser.add_argument('--Input_type', choices=['TD', 'FD','other'],type=str, default='TD', help='the input type decides the length of input')
-    parser.add_argument('--data_dir', type=str, default= "./data/XJTUGearbox/XJTUGearboxKnn.pkl", help='the directory of the data')
+    parser.add_argument('--data_dir', type=str, default= "./data/SKABAttr8/SKABAttr8Knn.pkl", help='the directory of the data')
     parser.add_argument('--cuda_device', type=str, default='0', help='assign device')
     parser.add_argument('--checkpoint_dir', type=str, default='./checkpoint', help='the directory to save the model')
     parser.add_argument('--batch_size', type=int, default=64, help='batchsize of the training process')
@@ -36,7 +36,7 @@ def parse_args():
     # optimization information
     parser.add_argument('--layer_num_last', type=int, default=0, help='the number of last layers which unfreeze')
     parser.add_argument('--opt', type=str, choices=['sgd', 'adam'], default='sgd', help='the optimizer')
-    parser.add_argument('--lr', type=float, default=0.01, help='the initial learning rate')
+    parser.add_argument('--lr', type=float, default=0.001, help='the initial learning rate')
     parser.add_argument('--momentum', type=float, default=0.9, help='the momentum for sgd')
     parser.add_argument('--weight_decay', type=float, default=5e-4, help='the weight decay')
     parser.add_argument('--lr_scheduler', type=str, choices=['step', 'exp', 'stepLR', 'fix'], default='step', help='the learning rate schedule')
@@ -46,8 +46,9 @@ def parse_args():
     # save, load and display information
     parser.add_argument('--resume', type=str, default='', help='the directory of the resume training model')
     parser.add_argument('--max_model_num', type=int, default=1, help='the number of most recent models to save')
-    parser.add_argument('--max_epoch', type=int, default=50, help='max number of epoch')
-    parser.add_argument('--print_step', type=int, default=100, help='the interval of log training information')
+    parser.add_argument('--max_epoch', type=int, default=30, help='max number of epoch')
+    parser.add_argument('--print_step', type=int, default=10, help='the interval of log training information')
+    parser.add_argument('--file_name', type=str, default='df_valve1', help='select the file name')
     args = parser.parse_args()
     return args
 

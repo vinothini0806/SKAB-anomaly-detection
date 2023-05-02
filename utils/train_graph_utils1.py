@@ -46,7 +46,7 @@ class train_utils1(object):
         Dataset = getattr(datasets, args.data_name)
         self.datasets = {}
 
-        self.datasets['train'], self.datasets['val'] = Dataset(args.sample_length,args.data_dir, args.Input_type, args.task).data_preprare()
+        self.datasets['train'], self.datasets['val'] = Dataset(args.sample_length,args.data_dir, args.Input_type, args.task, args.overlapping_number, args.file_name).data_preprare()
 
         self.dataloaders = {x: DataLoader(self.datasets[x], batch_size=args.batch_size,
                                                            shuffle=(True if x == 'train' else False),
