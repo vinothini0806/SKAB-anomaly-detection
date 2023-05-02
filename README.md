@@ -45,7 +45,8 @@ Paper:
   
 ## The data for runing the demo
    In order to facilitate your implementation, we give some organized data here for node level-fault diagnosis and graph-level prognosis [`Data for demo`]
-   * `SKABAcc1` contians the Accelerometer1 values within different folders ( eg:- df_valve1, df_valve2). Each folder indicates different conditions as shown in this ##[data structure](https://github.com/vinothini0806/SKAB-anomaly-detection/blob/main/logo2.png)
+   * `SKABAcc1` contians the Accelerometer1 values within different folders ( eg:- df_valve1, df_valve2). Each folder indicates different conditions as shown in this [data structure](https://github.com/vinothini0806/SKAB-anomaly-detection/blob/main/logo2.png)
+   * As SKABAcc1 folder `SKABAcc2` & `SKABAttr8` folders also contains Accelerometer 2 values and 8 attributes values respectively.
    
 # Datasets
 ## Anomaly detection dataset
