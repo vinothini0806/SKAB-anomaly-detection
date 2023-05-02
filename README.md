@@ -1,5 +1,5 @@
 # Graph Convolutional Neural Netwrok
-## [The emerging graph convolutional neural networks for intelligent fault diagnostics in SKAB Dataset](https://www.sciencedirect.com/science/article/pii/S0888327021009791)
+## [The emerging graph convolutional neural network for intelligent fault diagnostics in SKAB Dataset](https://www.sciencedirect.com/science/article/pii/S0888327021009791)
 
 
 
@@ -45,12 +45,11 @@ Paper:
   
 ## The data for runing the demo
    In order to facilitate your implementation, we give some organized data here for node level-fault diagnosis and graph-level prognosis [`Data for demo`]
+   * `SKABAcc1` contians the Accelerometer1 values within different folders ( eg:- df_valve1, df_valve2). Each folder indicates different conditions as shown in this ##[data structure](https://github.com/vinothini0806/SKAB-anomaly-detection/blob/main/logo2.png)
    
 # Datasets
-## Anomaly etestion dataset
-* [SKAB Dataset](https://www.kaggle.com/datasets/yuriykatser/skoltech-anomaly-benchmark-skab
-![image](https://user-images.githubusercontent.com/62206610/235572130-ae545dfa-7eb5-437f-99d4-9d091341433e.png)
-)
+## Anomaly detection dataset
+* [SKAB Dataset](https://www.kaggle.com/datasets/yuriykatser/skoltech-anomaly-benchmark-skab)
 
 
 
